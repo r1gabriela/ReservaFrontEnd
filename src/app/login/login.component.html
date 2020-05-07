@@ -3,10 +3,22 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <form class="box" [formGroup]="formLogin">
+        <img class="icone" src="../../assets/imagens/icone_usuario.png">
         <h1>Login</h1>
-        <input type="text" class="form-control" name="login" id="login" formControlName="login" placeholder="Login">
-        <input type="password" class="form-control" name="senha" id="senha" formControlName="senha" placeholder="Senha">
-        <button type="submit" name="">Login</button>
+        <div class="ui-inputgroup">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" size="30" pInputText>
+          <label for="float-input">Login</label>
+        </span>
+        </div>
+        <div class="ui-inputgroup">
+        <span class="ui-float-label">
+          <input id="float-input" type="password" size="30" pInputText>
+          <label for="float-input">Senha</label>
+        </span>
+        </div>
+        <button class="botaologin" pButton type="button" label="Login" ></button>
+        <h3><a href="localhost:4200">Cadastre-se</a></h3>
       </form>
     </div>
   </div>

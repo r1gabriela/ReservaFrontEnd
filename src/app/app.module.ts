@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { InputTextModule } from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,7 +17,8 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     ReactiveFormsModule,
     routing,
-    InputTextModule
+    InputTextModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
