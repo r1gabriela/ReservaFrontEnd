@@ -1,0 +1,27 @@
+<div class="ui-fluid">
+  <img class="fundo" src="../../assets/imagens/background_app.png">
+  <div class="box ui-g-fluid">
+    <div class="ui-g-12 ui-md-12">
+      <form [formGroup]="formLogin">
+        <img class="icone" src="../../assets/imagens/icone_usuario.png">
+        <h1>Login</h1>
+        <div class="senha">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input name="login" id="Login" formControlName="login" type="text" pInputText>
+              <label for="login">Login</label>
+            </span>
+          </div>
+          <div class="senha">
+            <span class="ui-float-label">
+              <input name="senha" id="senha" formControlName="senha" type="password" size="40%" pInputText>
+              <label for="senha">Senha</label>
+            </span>
+          </div>
+        </div>
+        <button class="botaologin" pButton type="button" label="Login"></button>
+        <h3><a href="localhost:4200">Cadastre-se</a></h3>
+      </form>
+    </div>
+  </div>
+</div>
