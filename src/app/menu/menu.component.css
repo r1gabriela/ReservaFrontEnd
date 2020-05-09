@@ -1,0 +1,43 @@
+.caixa{
+  height: 100%;
+  width: 19%;
+  background-color: rgb(51, 51, 51);
+  padding-top: 10px;
+}
+
+.caixa .logo header{
+  opacity: 0.9;
+  color: white;
+  line-height: 90px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: -10px;
+  display: block;
+}
+
+.caixa .barra{
+  opacity: 0.3;
+  width: 90%;
+  height: 1px;
+  background-color: white;
+  margin-bottom: 7%;
+  margin-left: 4%;
+}
+
+.logo img{
+  display: block;
+  width: 3%;
+  height: 5%;
+  margin-left: 7%;
+  color: aliceblue;
+  position: absolute;
+}
+
+.barrasmenu{
+  background-color: black;
+}
+
+.caixa .ui-panelmenu{
+  background-color: black;
+}
