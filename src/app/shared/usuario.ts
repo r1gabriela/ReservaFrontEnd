@@ -4,4 +4,8 @@ export class Usuario {
   login: string;
   senha: string;
   ativo: boolean;
+  nome: string;
+  cpf: string;
+  telefone: string;
+  email: string;
 }
