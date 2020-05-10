@@ -1,8 +1,39 @@
 .caixa{
   height: 100%;
-  width: 19%;
   background-color: rgb(25,25,25);
   padding-top: 10px;
+}
+
+.imagem{
+  display: table-cell;
+  float: left;
+  width: 20%;
+}
+
+img{
+  width: 10%;
+  height: 10%;
+}
+
+.p-col-12 conteudo{
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.texto{
+  display: table-cell;
+  float: left;
+  color: white;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  /* margin-left: 4%; */
+  /* margin-right: ; */
+}
+
+strong{
+  text-align: center;
+  text-justify: auto;
 }
 
 .caixa .logo header{
