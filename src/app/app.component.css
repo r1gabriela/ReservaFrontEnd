@@ -3,6 +3,10 @@
   margin: 0%;
 }
 
+.espacamento{
+  padding: 3%;
+}
+
 div {
   height: 100% !important;
 }
