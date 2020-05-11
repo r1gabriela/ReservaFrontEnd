@@ -8,14 +8,13 @@ html, body{
 }
 
  .caixaInterface{
-  width: 77%;
-  height: 80%;
-    padding: 8%;
+    height: 65%;
+    width: 77%;
     background-color: rgb(25,25,25);
     top: 15%;
     box-shadow: 0px 20px 20px 0px rgba(0,0,0,.5);
     border-radius: 4px;
-    position: absolute;
+    position: fixed;
 }
 
 .barrasuperior{

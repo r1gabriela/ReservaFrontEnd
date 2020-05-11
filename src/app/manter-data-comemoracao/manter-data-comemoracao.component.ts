@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { DataComemorativa } from '../shared/dataComemorativa';
 
 @Component({
   selector: 'app-manter-data-comemoracao',
@@ -6,48 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manter-data-comemoracao.component.css']
 })
 export class ManterDataComemoracaoComponent implements OnInit {
+  dataComemorativa: FormGroup;
 
-  country: any;
+  constructor(private formBuilder: FormBuilder) { }
 
-    countries: any[];
+  ngOnInit() {
+    this.createForm(new DataComemorativa());
+  }
 
-    filteredCountriesSingle: any[];
-
-    filteredCountriesMultiple: any[];
-
-    brands: string[] = ['Audi','BMW','Fiat','Ford','Honda','Jaguar','Mercedes','Renault','Volvo','VW'];
-
-    filteredBrands: any[];
-
-    brand: string;
-
-    constructor() { }
-
-    ngOnInit(){
-      
-    }
-
-    filterCountry(query, countries: any[]):any[] {
-        //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-        let filtered : any[] = [];
-        for(let i = 0; i < countries.length; i++) {
-            let country = countries[i];
-            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-                filtered.push(country);
-            }
-        }
-        return filtered;
-    }
-
-    filterBrands(event) {
-        this.filteredBrands = [];
-        for(let i = 0; i < this.brands.length; i++) {
-            let brand = this.brands[i];
-            if (brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-                this.filteredBrands.push(brand);
-            }
-        }
-    }
+  createForm(dataComemorativa: DataComemorativa) {
+    this.dataComemorativa = this.formBuilder.group({
+      idDataComemorativa: [dataComemorativa.idDataComemorativa],
+      IdPessoa: [dataComemorativa.IdPessoa],
+      idCliente: [dataComemorativa.idCliente],
+      idTipoComemoracao: [dataComemorativa.idTipoComemoracao],
+      dataComemoracao: [dataComemorativa.dataComemoracao]
+    });
+  }
 }
 
 
