@@ -1,0 +1,25 @@
+<div class="p-col caixaInterface">
+  <div class="p-col-12">
+    <div class="p-grid">
+      <div class="p-col-10 p-offset-1 barrasuperior">
+        <header><strong>Manter Data Comemorativa</strong></header>
+      </div>
+    </div>
+    <div class="p-col-12 boxNome">
+      <p-autoComplete field="name" size="100" placeholder="Nome"></p-autoComplete>
+    </div>
+    <div class="p-col boxData">
+      <div class="p-col-4 p-offset-1 boxFiltro">
+        <p-calendar placeholder="Data"></p-calendar>
+      </div>
+      <div class="p-col-4 p-offset-2 boxFiltro">
+        <p-dropdown filter="true" placeholder="Tipo de Comemoração">
+          <ng-template let-item pTemplate="selectedItem">
+            <span style="vertical-align:middle; margin-left: .5em"></span>
+          </ng-template>
+        </p-dropdown>
+      </div>
+    </div>
+    <button pButton type="button" label="Salvar"></button>
+  </div>
+</div>

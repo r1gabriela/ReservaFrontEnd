@@ -18,6 +18,7 @@ img{
 .texto{
   float: left;
   color: white;
+  font-family: sans-serif;
 }
 
 .caixa .barra{
