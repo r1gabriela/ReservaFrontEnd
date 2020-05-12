@@ -18,6 +18,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { MenuComponent } from './menu/menu.component';
 import { ManterDataComemoracaoComponent } from './manter-data-comemoracao/manter-data-comemoracao.component';
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
+import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter
     MenuComponent,
     ManterDataComemoracaoComponent,
     ManterMesaComponent,
+    ManterDependenteComponent,
     ManterTipoComemoracaoComponent,
   ],
   imports: [
