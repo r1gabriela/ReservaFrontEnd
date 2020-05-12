@@ -17,8 +17,7 @@ const APP_ROUTES: Routes = [
   {
     path: 'dataComemorativa/manter',
     component: ManterDataComemoracaoComponent
-  }
-
+  },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

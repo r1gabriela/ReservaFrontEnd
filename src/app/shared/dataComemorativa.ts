@@ -1,7 +1,7 @@
 export class DataComemorativa {
-  idDataComemorativa: number;
-	IdPessoa: number;
-	idCliente: number;
-	idTipoComemoracao: number;
-	dataComemoracao: Date;
+  idDataComemorativa: number = 0;
+	IdPessoa: number = 0;
+	idCliente: number = 0;
+	idTipoComemoracao: number = 0;
+	dataComemoracao: Date = new Date();
 }

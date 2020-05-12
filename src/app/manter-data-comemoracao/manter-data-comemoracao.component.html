@@ -5,32 +5,61 @@
         <div class="ui-g-10 ui-g-offset-1 barrasuperior">
           <header><strong>Manter Data Comemorativa</strong></header>
         </div>
-        <div class="ui-g">
-          <form [formGroup]="dataComemorativa">
-            <div class="ui-g-10 ui-g-offset-1 boxNome">
-              <p-autoComplete name="IdPessoa" id="IdPessoa" formControlName="IdPessoa" field="name" placeholder="Nome"
-                [minLength]="3" size="250"></p-autoComplete>
-            </div>
-            <div class="ui-g-10 ui-g-offset-1 boxData">
-              <div class="ui-g-12 ui-lg-6 ui-xl-6 ui-md-6">
-                <p-calendar name="dataComemoracao" id="dataComemoracao" formControlName="dataComemoracao"
-                  placeholder="Data"></p-calendar>
+        <div class="ui-g-10 ui-g-offset-1 boxForm">
+          <p-table [columns]="cols" [value]="datas" selectionMode="single" [(selection)]="selectedData"
+            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+            <ng-template pTemplate="caption">
+              Lista de Datas Comemorativas
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="summary" let-rowData>
+              <div class="ui-xl-2 ui-lg-2 ui-g-6 ui-md-3" style="text-align:left">
+                <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
               </div>
-              <div class="ui-g-12 ui-lg-6 ui-xl-6 ui-md-6">
-                <p-dropdown name="idTipoComemoracao" id="idTipoComemoracao" formControlName="idTipoComemoracao"
-                  filter="true" placeholder="Tipo Comemoração">
+            </ng-template>
+          </p-table>
+
+          <p-dialog header="Detalhes Data Comemoração" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
+            showEffect="fade" [modal]="true" [style]="{width: '500px'}">
+            <div class="ui-g ui-fluid" *ngIf="dataComemoracao">
+              <div class="ui-g-12">
+                <p-autoComplete [(ngModel)]="dataComemoracao.IdPessoa" field="name" placeholder="Nome" [minLength]="3"
+                  size="250"></p-autoComplete>
+              </div>
+              <div class="ui-g-12">
+                <p-calendar name="dataComemoracao" [(ngModel)]="dataComemoracao.dataComemoracao" placeholder="Data">
+                </p-calendar>
+              </div>
+              <div class="ui-g-12">
+                <p-dropdown [(ngModel)]="dataComemoracao.idTipoComemoracao" filter="true"
+                  placeholder="Tipo Comemoração">
                   <ng-template let-item pTemplate="selectedItem">
                     <span style="vertical-align:middle; margin-left: .5em"></span>
                   </ng-template>
                 </p-dropdown>
               </div>
             </div>
-            <div class="ui-g-10 ui-g-offset-1 boxData">
-              <div class="ui-g-6 ui-g-offset-3">
-                <button pButton type="button" label="Salvar"></button>
+            <p-footer>
+              <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
+                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
               </div>
-            </div>
-          </form>
+            </p-footer>
+          </p-dialog>
         </div>
       </div>
     </div>

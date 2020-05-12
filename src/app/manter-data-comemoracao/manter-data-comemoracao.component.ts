@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { DataComemorativa } from '../shared/dataComemorativa';
 
 @Component({
@@ -8,23 +7,44 @@ import { DataComemorativa } from '../shared/dataComemorativa';
   styleUrls: ['./manter-data-comemoracao.component.css']
 })
 export class ManterDataComemoracaoComponent implements OnInit {
-  dataComemorativa: FormGroup;
+  displayDialog: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  selectedData: DataComemorativa;
+
+  dataComemoracao: DataComemorativa;
+
+  newData: boolean;
+
+  datas: DataComemorativa[];
+
+  cols: any[];
 
   ngOnInit() {
-    this.createForm(new DataComemorativa());
+    this.cols = [
+      { field: 'nome', header: 'Nome' },
+      { field: 'nomeTipo', header: 'Tipo' },
+      { field: 'dataComemoracao', header: 'Data' }
+    ];
   }
 
-  createForm(dataComemorativa: DataComemorativa) {
-    this.dataComemorativa = this.formBuilder.group({
-      idDataComemorativa: [dataComemorativa.idDataComemorativa],
-      IdPessoa: [dataComemorativa.IdPessoa],
-      idCliente: [dataComemorativa.idCliente],
-      idTipoComemoracao: [dataComemorativa.idTipoComemoracao],
-      dataComemoracao: [dataComemorativa.dataComemoracao]
-    });
+  showDialogToAdd() {
+    this.newData = true;
+    this.displayDialog = true;
+    this.dataComemoracao = new DataComemorativa();
   }
+
+  save() {
+    this.displayDialog = false;
+  }
+
+  delete() {
+    this.displayDialog = false;
+  }
+
+  onRowSelect(event) {
+    this.displayDialog = true;
+  }
+
 }
 
 
