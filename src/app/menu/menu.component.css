@@ -1,0 +1,31 @@
+.caixa{
+  height: 100%;
+  background-color: rgb(25,25,25);
+  padding-top: 10px;
+}
+
+img{
+  width: 15%;
+  height: 15%;
+}
+
+.conteudo{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.texto{
+  float: left;
+  color: white;
+  font-family: sans-serif;
+}
+
+.caixa .barra{
+  opacity: 0.3;
+  width: 90%;
+  height: 1px;
+  background-color: white;
+  margin-bottom: 7%;
+  margin-left: 4%;
+}
