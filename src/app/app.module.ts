@@ -21,6 +21,7 @@ import { ManterDataComemoracaoComponent } from './manter-data-comemoracao/manter
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter
     ManterMesaComponent,
     ManterDependenteComponent,
     ManterTipoComemoracaoComponent,
+    ClienteComponent,
   ],
   imports: [
     BrowserModule,

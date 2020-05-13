@@ -1,3 +1,4 @@
+import { ClienteComponent } from './cliente/cliente.component';
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ModuleWithProviders, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -32,6 +33,10 @@ const APP_ROUTES: Routes = [
   {
     path: 'tipoComemoracao/manter',
     component: ManterTipoComemoracaoComponent
+  },
+  {
+    path: 'cliente',
+    component: ClienteComponent
   }
 ];
 
