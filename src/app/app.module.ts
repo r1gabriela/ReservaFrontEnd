@@ -23,6 +23,7 @@ import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
 
 //import { TipoComemoracaoServiceService } from './manter-tipo-comemoracao/tipo-comemoracao-service.service';
 
@@ -37,6 +38,7 @@ import { ClienteComponent } from './cliente/cliente.component';
     ManterDependenteComponent,
     ManterTipoComemoracaoComponent,
     ClienteComponent,
+    FuncionarioComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ManterDataComemoracaoComponent } from './manter-data-comemoracao/manter-data-comemoracao.component';
 import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -35,8 +36,12 @@ const APP_ROUTES: Routes = [
     component: ManterTipoComemoracaoComponent
   },
   {
-    path: 'cliente',
+    path: 'cliente/manter',
     component: ClienteComponent
+  },
+  {
+    path: 'funcionario/manter',
+    component: FuncionarioComponent
   }
 ];
 
