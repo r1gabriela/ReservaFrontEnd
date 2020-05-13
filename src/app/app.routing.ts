@@ -28,10 +28,11 @@ const APP_ROUTES: Routes = [
   {
     path: 'dependente/manter',
     component: ManterDependenteComponent
-  }
+  },
+  {
     path: 'tipoComemoracao/manter',
     component: ManterTipoComemoracaoComponent
-  },
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
