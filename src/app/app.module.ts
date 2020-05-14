@@ -6,7 +6,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule }   from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
@@ -25,6 +24,7 @@ import { ManterDependenteComponent } from './manter-dependente/manter-dependente
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { FuncionarioComponent } from './funcionario/funcionario.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 //import { TipoComemoracaoServiceService } from './manter-tipo-comemoracao/tipo-comemoracao-service.service';
 
@@ -40,6 +40,7 @@ import { FuncionarioComponent } from './funcionario/funcionario.component';
     ManterTipoComemoracaoComponent,
     ClienteComponent,
     FuncionarioComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
