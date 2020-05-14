@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule }   from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
@@ -48,6 +49,8 @@ import { FuncionarioComponent } from './funcionario/funcionario.component';
     ButtonModule,
     BrowserAnimationsModule,
     PanelMenuModule,
+    HttpClientModule,
+    FormsModule,
     CalendarModule,
     AutoCompleteModule,
     DropdownModule,

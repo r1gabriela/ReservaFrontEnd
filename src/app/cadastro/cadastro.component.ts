@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Usuario } from '../shared/usuario';
+import { UsuarioService } from "../shared/service/usuarioService";
 
 @Component({
   selector: 'app-cadastro',
@@ -8,22 +8,16 @@ import { Usuario } from '../shared/usuario';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
-  formCadastro: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  usuario: Usuario = new Usuario();
+
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(){
-    this.createForm(new Usuario());
   }
 
-  createForm(usuario: Usuario) {
-    this.formCadastro = this.formBuilder.group({
-      nome: [usuario.nome],
-      login: [usuario.login],
-      senha: [usuario.senha],
-      cpf: [usuario.cpf],
-      telefone: [usuario.telefone],
-      email: [usuario.email]
-    });
+  cadastro(){
+    debugger
+    this.usuarioService.cadastrar(this.usuario).subscribe(usuario => this.usuario = usuario);
   }
 }
