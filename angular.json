@@ -25,11 +25,14 @@
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/nova-dark/theme.css",
+              "node_modules/primeng/resources/themes/luna-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeflex/primeflex.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,7 +96,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js"
+            ]
           }
         },
         "lint": {
@@ -122,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ReservaFrontend"
+    }
+  },
+  "defaultProject": "ReservaFrontend",
+  "cli": {
+    "analytics": false
+  }
 }
