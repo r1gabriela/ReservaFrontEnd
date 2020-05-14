@@ -1,14 +1,17 @@
-<div class="caixa">
-  <div class="ui-g">
-    <div class="ui-g-12 ui-md-12">
-      <div class="logo">
-        <img src="../../assets/imagens/logosite2.png">
+  <div *ngIf="isMobileMenu()">
+    <button #btn type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
+    <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
+  </div>
+  <div class="p-col caixa" *ngIf="!isMobileMenu()">
+    <div class="p-col-12 conteudo">
+      <img src="../../assets/imagens/logosite.png">
+      <div class="texto">
         <header>
           <strong>Smart Booking</strong>
         </header>
       </div>
-      <div class="barra"></div>
-      <p-panelMenu [transitionOptions]="'0ms'" [model]="items" [multiple]="false" class=ui-panelmenu></p-panelMenu>
     </div>
+    <div class="barra"></div>
+    <p-panelMenu [transitionOptions]="'0ms'" [model]="items" [multiple]="false" class=ui-panelmenu></p-panelMenu>
   </div>
-</div>
+
