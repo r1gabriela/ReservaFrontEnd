@@ -3,13 +3,13 @@
     <div class="ui-g-fluid">
       <div class="ui-g">
         <div class="ui-g-10 ui-g-offset-1 barrasuperior">
-          <header><strong>Manter Mesa</strong></header>
+          <header><strong>Manter Usuário</strong></header>
         </div>
         <div class="ui-g-10 ui-g-offset-1 boxForm">
-          <p-table [columns]="cols" [value]="mesas" selectionMode="single" [(selection)]="selectedMesa"
-            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
+          <p-table [columns]="cols" [value]="usuarios" selectionMode="single" [(selection)]="selectedUsuario"
+            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
             <ng-template pTemplate="caption">
-              Lista de Mesas
+              Lista de Usuários
             </ng-template>
             <ng-template pTemplate="header" let-columns>
               <tr>
@@ -26,26 +26,20 @@
                 </td>
               </tr>
             </ng-template>
-            <ng-template pTemplate="summary" let-rowData>
-              <div class="ui-xl-2 ui-lg-2 ui-g-6 ui-md-3" style="text-align:left">
-                <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-              </div>
-            </ng-template>
           </p-table>
-
-          <p-dialog header="Detalhes Mesa" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
+          <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="mesa">
+            <div class="ui-g ui-fluid" *ngIf="usuario">
               <div class="ui-g-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="mesa.capacidade" name="capacidade" id="capacidade" type="number" min="1" pInputText>
-                  <label for="capacidade">Capacidade</label>
+                  <input [(ngModel)]="usuario.login" name="login" id="login" type="text" pInputText>
+                  <label for="login">Login</label>
                 </span>
               </div>
               <div class="ui-g-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="mesa.localizacao" name="localizacao" id="localizacao" type="text" pInputText>
-                  <label for="localizacao">Localização</label>
+                  <input [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" pInputText>
+                  <label for="senha">Senha</label>
                 </span>
               </div>
             </div>

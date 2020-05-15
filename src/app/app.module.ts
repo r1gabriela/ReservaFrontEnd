@@ -11,6 +11,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
+import { HttpClientModule } from '@angular/common/http';
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +22,11 @@ import { ManterDataComemoracaoComponent } from './manter-data-comemoracao/manter
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+
+//import { TipoComemoracaoServiceService } from './manter-tipo-comemoracao/tipo-comemoracao-service.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +38,9 @@ import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter
     ManterMesaComponent,
     ManterDependenteComponent,
     ManterTipoComemoracaoComponent,
+    ClienteComponent,
+    FuncionarioComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,12 +50,16 @@ import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter
     ButtonModule,
     BrowserAnimationsModule,
     PanelMenuModule,
+    HttpClientModule,
+    FormsModule,
     CalendarModule,
     AutoCompleteModule,
     DropdownModule,
     TableModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    TieredMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
