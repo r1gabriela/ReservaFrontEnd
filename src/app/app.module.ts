@@ -25,6 +25,7 @@ import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter
 import { ClienteComponent } from './cliente/cliente.component';
 import { FuncionarioComponent } from './funcionario/funcionario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 
 //import { TipoComemoracaoServiceService } from './manter-tipo-comemoracao/tipo-comemoracao-service.service';
 
@@ -41,6 +42,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     ClienteComponent,
     FuncionarioComponent,
     UsuarioComponent,
+    ManterUsuarioComponent,
   ],
   imports: [
     BrowserModule,
