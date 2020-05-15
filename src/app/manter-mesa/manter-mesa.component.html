@@ -7,7 +7,7 @@
         </div>
         <div class="ui-g-10 ui-g-offset-1 boxForm">
           <p-table [columns]="cols" [value]="mesas" selectionMode="single" [(selection)]="selectedMesa"
-            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
             <ng-template pTemplate="caption">
               Lista de Mesas
             </ng-template>
