@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Dependente } from '../shared/dependente'
+import { Dependente } from '../shared/dependente';
+import { DependenteService } from '../shared/service/dependenteService';
 
 @Component({
   selector: 'app-manter-dependente',
@@ -20,6 +21,10 @@ export class ManterDependenteComponent implements OnInit {
 
   cols: any[];
 
+  constructor(private dependenteService: DependenteService){
+
+  }
+
   ngOnInit() {
     this.cols = [
       { field: 'nome', header: 'Nome' },
@@ -36,13 +41,18 @@ export class ManterDependenteComponent implements OnInit {
 
   save() {
     this.displayDialog = false;
+    this.dependenteService.salvar(this.dependente).subscribe(dependente => this.dependente = dependente);
   }
 
   delete() {
     this.displayDialog = false;
+    this.dependenteService.excluir(this.dependente).subscribe(resp => Boolean);
   }
 
   onRowSelect(event) {
     this.displayDialog = true;
+    this.dependente = event.data;
+    this.newDependente = false;
   }
+
 }
