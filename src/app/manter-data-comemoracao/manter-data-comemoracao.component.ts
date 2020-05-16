@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataComemorativa } from '../shared/dataComemorativa';
+import { DataComemorativaService } from '../shared/service/dataComemorativaService';
 
 @Component({
   selector: 'app-manter-data-comemoracao',
@@ -19,12 +20,18 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   cols: any[];
 
+  constructor(private dataComemorativaService: DataComemorativaService){
+
+  }
+
   ngOnInit() {
     this.cols = [
       { field: 'nome', header: 'Nome' },
       { field: 'nomeTipo', header: 'Tipo' },
       { field: 'dataComemoracao', header: 'Data' }
     ];
+
+    this.listar();
   }
 
   showDialogToAdd() {
@@ -35,16 +42,25 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   save() {
     this.displayDialog = false;
+    this.dataComemorativaService.salvar(this.dataComemoracao).subscribe(resp => this.dataComemoracao = resp)
+    this.listar();
+
   }
 
   delete() {
     this.displayDialog = false;
+    this.listar();
   }
 
   onRowSelect(event) {
     this.displayDialog = true;
   }
 
+  listar(){
+    this.dataComemorativaService.listar().subscribe(datas => this.datas = datas);
+  }
+
 }
+
 
 
