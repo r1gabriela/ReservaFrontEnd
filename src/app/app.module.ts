@@ -11,7 +11,6 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
-import { HttpClientModule } from '@angular/common/http';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -60,7 +59,6 @@ import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.componen
     TableModule,
     DialogModule,
     FormsModule,
-    HttpClientModule,
     TieredMenuModule
   ],
   providers: [],
