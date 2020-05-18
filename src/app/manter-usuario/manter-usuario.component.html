@@ -3,13 +3,13 @@
     <div class="ui-g-fluid">
       <div class="ui-g">
         <div class="ui-g-10 ui-g-offset-1 barrasuperior">
-          <header><strong>Manter Cliente</strong></header>
+          <header><strong>Manter Usuário</strong></header>
         </div>
         <div class="ui-g-10 ui-g-offset-1 boxForm">
-          <p-table [columns]="cols" [value]="clientes" selectionMode="single" [(selection)]="selectedCliente"
+          <p-table [columns]="cols" [value]="usuarios" selectionMode="single" [(selection)]="selectedUsuario"
             (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
             <ng-template pTemplate="caption">
-              Lista de Clientes
+              Lista de Usuários
             </ng-template>
             <ng-template pTemplate="header" let-columns>
               <tr>
@@ -26,43 +26,26 @@
                 </td>
               </tr>
             </ng-template>
-            <ng-template pTemplate="summary" let-rowData>
-              <div class="ui-xl-2 ui-lg-2 ui-g-6 ui-md-3" style="text-align:left">
-                <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-              </div>
-            </ng-template>
           </p-table>
-
-          <p-dialog header="Detalhes Cliente" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
+          <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="cliente">
+            <div class="ui-g ui-fluid" *ngIf="usuario">
               <div class="ui-g-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.nome" name="nome" id="nome" type="text" pInputText>
-                  <label for="nome">Nome</label>
+                  <input [(ngModel)]="usuario.login" name="login" id="login" type="text" pInputText>
+                  <label for="login">Login</label>
                 </span>
               </div>
               <div class="ui-g-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.cpf" name="cpf" id="cpf" type="text" pInputText>
-                  <label for="cpf">CPF</label>
-                </span>
-              </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.telefone" name="telefone" id="telefone" type="text" pInputText>
-                  <label for="telefone">Telefone</label>
-                </span>
-              </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.email" name="email" id="email" type="email" pInputText>
-                  <label for="email">Email</label>
+                  <input [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" pInputText>
+                  <label for="senha">Senha</label>
                 </span>
               </div>
             </div>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
                 <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
               </div>
             </p-footer>
@@ -72,3 +55,4 @@
     </div>
   </div>
 </div>
+
