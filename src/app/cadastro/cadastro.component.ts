@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario';
-import { UsuarioService } from "../shared/service/usuarioService";
+import { UsuarioService } from "../shared/service/usuario.service";
 
 @Component({
   selector: 'app-cadastro',
