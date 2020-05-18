@@ -1,11 +1,8 @@
-export class Usuario {
-  idUsuario: number;
-  idPessoa: number;
-  login: string;
-  senha: string;
-  ativo: boolean;
-  nome: string;
-  cpf: string;
-  telefone: string;
-  email: string;
+import { Cliente } from './cliente';
+
+export class Usuario extends Cliente{
+  idUsuario: number = 0;
+  login: string = "";
+  senha: string = "";
+  ativo: boolean = true;
 }
