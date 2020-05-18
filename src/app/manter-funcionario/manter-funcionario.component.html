@@ -3,13 +3,13 @@
     <div class="ui-g-fluid">
       <div class="ui-g">
         <div class="ui-g-10 ui-g-offset-1 barrasuperior">
-          <header><strong>Manter Mesa</strong></header>
+          <header><strong>Manter Funcionário</strong></header>
         </div>
         <div class="ui-g-10 ui-g-offset-1 boxForm">
-          <p-table [columns]="cols" [value]="mesas" selectionMode="single" [(selection)]="selectedMesa"
-            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
+          <p-table [columns]="cols" [value]="funcionarios" selectionMode="single" [(selection)]="selectedFuncionario"
+            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
             <ng-template pTemplate="caption">
-              Lista de Mesas
+              Lista de Funcionarios
             </ng-template>
             <ng-template pTemplate="header" let-columns>
               <tr>
@@ -33,26 +33,32 @@
             </ng-template>
           </p-table>
 
-          <p-dialog header="Detalhes Mesa" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
+          <p-dialog header="Detalhes Funcionario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="mesa">
+            <div class="ui-g ui-fluid" *ngIf="funcionario">
               <div class="ui-g-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="mesa.capacidade" name="capacidade" id="capacidade" type="number" min="1" pInputText>
-                  <label for="capacidade">Capacidade</label>
+                  <input [(ngModel)]="funcionario.nome" name="nome" id="nome" type="text" pInputText>
+                  <label for="nome">Nome</label>
                 </span>
               </div>
               <div class="ui-g-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="mesa.localizacao" name="localizacao" id="localizacao" type="text" pInputText>
-                  <label for="localizacao">Localização</label>
+                  <input [(ngModel)]="funcionario.cpf" name="cpf" id="cpf" type="text" pInputText>
+                  <label for="cpf">CPF</label>
                 </span>
+              </div>
+              <div class="ui-g-12">
+                <p-dropdown [(ngModel)]="funcionario.idTipoFuncionario" filter="false" placeholder="Tipo Funcionário">
+                  <ng-template let-item pTemplate="selectedItem">
+                    <span style="vertical-align:middle; margin-left: .5em"></span>
+                  </ng-template>
+                </p-dropdown>
               </div>
             </div>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                <button type="button" pButton icon="pi pi-check" (click)="salvar()" label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>

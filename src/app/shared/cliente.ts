@@ -1,7 +1,6 @@
-export class Cliente {
-  idPessoa: number = 0;
-  nome: string = "";
-	cpf: string = "";
-	telefone: string = "";
-	email: string = "";
+import { Pessoa } from './pessoa';
+
+export class Cliente extends Pessoa{
+  telefone: String = "";
+  email: String = "";
 }

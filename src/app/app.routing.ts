@@ -1,4 +1,4 @@
-import { ClienteComponent } from './cliente/cliente.component';
+import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ModuleWithProviders, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,6 +8,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ManterDataComemoracaoComponent } from './manter-data-comemoracao/manter-data-comemoracao.component';
 import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
+import { ManterClienteComponent } from './manter-cliente/manter-cliente.component';
+import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -35,8 +37,16 @@ const APP_ROUTES: Routes = [
     component: ManterTipoComemoracaoComponent
   },
   {
-    path: 'cliente',
-    component: ClienteComponent
+    path: 'cliente/manter',
+    component: ManterClienteComponent
+  },
+  {
+    path: 'funcionario/manter',
+    component: ManterFuncionarioComponent
+  },
+  {
+    path: 'usuario/manter',
+    component: ManterUsuarioComponent
   }
 ];
 

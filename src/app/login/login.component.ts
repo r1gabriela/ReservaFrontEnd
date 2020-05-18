@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Usuario } from '../shared/usuario';
+import { UsuarioService } from '../shared/service/usuario.service'
 
 @Component({
   selector: 'app-login',
@@ -8,19 +8,16 @@ import { Usuario } from '../shared/usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  formLogin: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  usuario: Usuario = new Usuario();
+
+  constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.createForm(new Usuario());
   }
 
-  createForm(usuario: Usuario) {
-    this.formLogin = this.formBuilder.group({
-      login: [usuario.login],
-      senha: [usuario.senha]
-    });
+  logar(){
+    this.usuarioService.logar(this.usuario).subscribe(usuario => this.usuario = usuario);
   }
 
 }
