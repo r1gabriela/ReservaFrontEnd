@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../shared/service/usuarioService';
+import { UsuarioService } from '../shared/service/usuario.service';
 import { Usuario } from '../shared/usuario';
 
 @Component({
@@ -9,9 +9,17 @@ import { Usuario } from '../shared/usuario';
 })
 export class ManterUsuarioComponent implements OnInit {
 
+  displayDialog: boolean;
+
+  selectedUsuario: Usuario;
+
   usuario: Usuario;
 
+  newUsuario: boolean;
+
   usuarios: Usuario[];
+
+  cols: any[];
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -19,15 +27,27 @@ export class ManterUsuarioComponent implements OnInit {
     this.listarTodos();
   }
 
+  showDialogToAdd() {
+    this.newUsuario = true;
+    this.displayDialog = true;
+    this.usuario = new Usuario();
+  }
+
   listarTodos(){
     this.usuarioService.listarTodos().subscribe(resp => this.usuarios = resp);
   }
 
-  excluir(){
+  delete(){
     this.usuarioService.excluir(this.usuario).subscribe(resp => Boolean);
   }
 
-  salvar(){
+  onRowSelect(event) {
+    this.newUsuario = false;
+    this.usuario = event.data;
+    this.displayDialog = true;
+  }
+
+  save(){
     this.usuarioService.salvar(this.usuario).subscribe(usuario => this.usuario = usuario);
   }
 
