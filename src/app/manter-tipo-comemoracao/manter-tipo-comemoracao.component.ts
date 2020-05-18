@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoComemoracao } from '../shared/tipoComemoracao';
 
-import { TipoComemoracaoService } from './tipo-comemoracao.service';
-import { FormGroup } from '@angular/forms';
-
+import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service';
 
 @Component({
   selector: 'app-manter-tipo-comemoracao',
@@ -57,12 +55,12 @@ export class ManterTipoComemoracaoComponent implements OnInit {
     this.tipo = event.data;
     this.displayDialog = true;
   }
-  
+
 
   listarTodos(){
-    
+
    this.tipoComemoracaoService.listarTodos().subscribe(tipos =>this.tipos = tipos);
-   
+
   }
 
   //save(){

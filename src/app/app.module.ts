@@ -22,9 +22,8 @@ import { ManterDataComemoracaoComponent } from './manter-data-comemoracao/manter
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ManterDependenteComponent } from './manter-dependente/manter-dependente.component';
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
-import { ClienteComponent } from './manter-cliente/cliente.component';
-import { FuncionarioComponent } from './funcionario/funcionario.component';
-import { UsuarioComponent } from './usuario/usuario.component';
+import { ManterClienteComponent } from './manter-cliente/manter-cliente.component';
+import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
 import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 
 
@@ -38,9 +37,8 @@ import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.componen
     ManterMesaComponent,
     ManterDependenteComponent,
     ManterTipoComemoracaoComponent,
-    ClienteComponent,
-    FuncionarioComponent,
-    UsuarioComponent,
+    ManterClienteComponent,
+    ManterFuncionarioComponent,
     ManterUsuarioComponent,
   ],
   imports: [

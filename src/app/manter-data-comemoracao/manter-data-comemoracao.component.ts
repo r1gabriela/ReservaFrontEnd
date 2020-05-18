@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataComemorativa } from '../shared/dataComemorativa';
-import { DataComemorativaService } from '../shared/service/dataComemorativaService';
+import { DataComemorativaService } from '../shared/service/dataComemorativa.service';
 
 @Component({
   selector: 'app-manter-data-comemoracao',

@@ -3,11 +3,11 @@ import { Funcionario } from '../shared/funcionario';
 import { FuncionarioService } from '../shared/service/funcionario.service'
 
 @Component({
-  selector: 'app-funcionario',
-  templateUrl: './funcionario.component.html',
-  styleUrls: ['./funcionario.component.css']
+  selector: 'app-manter-funcionario',
+  templateUrl: './manter-funcionario.component.html',
+  styleUrls: ['./manter-funcionario.component.css']
 })
-export class FuncionarioComponent implements OnInit {
+export class ManterFuncionarioComponent implements OnInit {
 
   displayDialog: boolean;
 

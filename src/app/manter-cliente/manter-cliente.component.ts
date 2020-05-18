@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../shared/service/cliente.service';
 
 @Component({
-  selector: 'app-cliente',
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.css']
+  selector: 'app-manter-cliente',
+  templateUrl: './manter-cliente.component.html',
+  styleUrls: ['./manter-cliente.component.css']
 })
-export class ClienteComponent implements OnInit {
+export class ManterClienteComponent implements OnInit {
   displayDialog: boolean;
 
   selectedCliente: Cliente;
