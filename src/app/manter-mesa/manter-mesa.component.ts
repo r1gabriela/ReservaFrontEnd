@@ -1,6 +1,6 @@
 import { Mesa } from './../shared/mesa';
 import { Component, OnInit } from '@angular/core';
-import { MesaService } from '../shared/service/mesaService';
+import { MesaService } from '../shared/service/mesa.service';
 
 @Component({
   selector: 'app-manter-mesa',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dependente } from '../shared/dependente';
-import { DependenteService } from '../shared/service/dependenteService';
+import { DependenteService } from '../shared/service/dependente.service';
 
 @Component({
   selector: 'app-manter-dependente',

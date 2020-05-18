@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TipoComemoracao } from '../shared/tipoComemoracao';
+import { TipoComemoracao } from '../tipoComemoracao';
 
 @Injectable({
   providedIn: 'root'

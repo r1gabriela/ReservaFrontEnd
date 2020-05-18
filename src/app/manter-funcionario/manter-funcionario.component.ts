@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from '../shared/funcionario';
+import { FuncionarioService } from '../shared/service/funcionario.service'
 
 @Component({
-  selector: 'app-funcionario',
-  templateUrl: './funcionario.component.html',
-  styleUrls: ['./funcionario.component.css']
+  selector: 'app-manter-funcionario',
+  templateUrl: './manter-funcionario.component.html',
+  styleUrls: ['./manter-funcionario.component.css']
 })
-export class FuncionarioComponent implements OnInit {
+export class ManterFuncionarioComponent implements OnInit {
 
   displayDialog: boolean;
 
@@ -20,12 +21,17 @@ export class FuncionarioComponent implements OnInit {
 
   cols: any[];
 
+  constructor(private funcionarioService: FuncionarioService) { }
+
   ngOnInit() {
     this.cols = [
       { field: 'nome', header: 'Nome' },
       { field: 'cpf', header: 'CPF' },
       { field: 'tipoFuncionario', header: 'Tipo' },
     ];
+
+  this.listarTodos();
+
   }
 
   showDialogToAdd() {
@@ -45,4 +51,14 @@ export class FuncionarioComponent implements OnInit {
   onRowSelect(event) {
     this.displayDialog = true;
   }
+
+  salvar(){
+    this.funcionarioService.salvar(this.funcionario).subscribe(funcionario => this.funcionario = funcionario);
+    this.listarTodos();
+  }
+
+  listarTodos(){
+    this.funcionarioService.listarTodos().subscribe(resp => this.funcionarios = resp);
+  }
+
 }
