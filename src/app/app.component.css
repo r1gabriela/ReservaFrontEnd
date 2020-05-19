@@ -5,8 +5,41 @@
 
 .espacamento{
   padding: 3%;
+  height: 94%;
 }
 
-div {
+.footerApp p{
+  color: white;
+  text-align: right;
+  background: none;
+  font-size: small;
+  opacity: 0.5;
+  font-family: sans-serif;
+}
+
+.footerApp{
+  height: 6% !important;
+  padding-right: 1%;
+  width: 100% !important;
+}
+
+.painel{
   height: 100% !important;
+}
+
+.painel-cel{
+  height: 88% !important;
+}
+
+.p-grid{
+  height: 100%;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.footerApp a:hover{
+  color: #3498db;
 }

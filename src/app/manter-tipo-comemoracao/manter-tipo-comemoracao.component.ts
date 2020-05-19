@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoComemoracao } from '../shared/tipoComemoracao';
 
+import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service';
+
 @Component({
   selector: 'app-manter-tipo-comemoracao',
   templateUrl: './manter-tipo-comemoracao.component.html',
@@ -20,11 +22,14 @@ export class ManterTipoComemoracaoComponent implements OnInit {
 
   cols: any[];
 
+  constructor(private tipoComemoracaoService: TipoComemoracaoService){ }
+
   ngOnInit() {
     this.cols = [
       { field: 'descricao', header: 'Descrição' },
       { field: 'ativo', header: 'Ativo' }
     ];
+    this.listarTodos();
   }
 
   showDialogToAdd() {
@@ -35,14 +40,31 @@ export class ManterTipoComemoracaoComponent implements OnInit {
 
   save() {
     this.displayDialog = false;
+    this.tipoComemoracaoService.salvar(this.tipo).subscribe(resp=> this.tipo = resp);
+    this.listarTodos();
   }
 
   delete() {
     this.displayDialog = false;
+    this.tipoComemoracaoService.deletar(this.tipo).subscribe(tipo => Boolean);
+    this.listarTodos();
   }
 
   onRowSelect(event) {
+    this.newTipo = false;
+    this.tipo = event.data;
     this.displayDialog = true;
   }
+
+
+  listarTodos(){
+
+   this.tipoComemoracaoService.listarTodos().subscribe(tipos =>this.tipos = tipos);
+
+  }
+
+  //save(){
+  //  this.salvar();
+ // }
 
 }

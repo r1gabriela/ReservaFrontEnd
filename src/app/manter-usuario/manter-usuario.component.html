@@ -3,13 +3,13 @@
     <div class="ui-g-fluid">
       <div class="ui-g">
         <div class="ui-g-10 ui-g-offset-1 barrasuperior">
-          <header><strong>Manter Dependente</strong></header>
+          <header><strong>Manter Usuário</strong></header>
         </div>
         <div class="ui-g-10 ui-g-offset-1 boxForm">
-          <p-table [columns]="cols" [value]="dependentes" selectionMode="single" [(selection)]="selectedDependente"
-            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
+          <p-table [columns]="cols" [value]="usuarios" selectionMode="single" [(selection)]="selectedUsuario"
+            (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
             <ng-template pTemplate="caption">
-              Lista de Dependentes
+              Lista de Usuários
             </ng-template>
             <ng-template pTemplate="header" let-columns>
               <tr>
@@ -26,21 +26,21 @@
                 </td>
               </tr>
             </ng-template>
-            <ng-template pTemplate="summary" let-rowData>
-              <div class="ui-xl-2 ui-lg-2 ui-g-6 ui-md-3" style="text-align:left">
-                <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-              </div>
-            </ng-template>
           </p-table>
-
-          <p-dialog header="Detalhes Dependente" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
+          <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="dependente">
+            <div class="ui-g ui-fluid" *ngIf="usuario">
               <div class="ui-g-12">
-                <input type="text" pInputText [(ngModel)]="dependente.nome" field="nome" placeholder="Nome" size="250">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="usuario.login" name="login" id="login" type="text" pInputText>
+                  <label for="login">Login</label>
+                </span>
               </div>
               <div class="ui-g-12">
-                <input type="text" pInputText name="cpf" [(ngModel)]="dependente.cpf" placeholder="cpf">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" pInputText>
+                  <label for="senha">Senha</label>
+                </span>
               </div>
             </div>
             <p-footer>

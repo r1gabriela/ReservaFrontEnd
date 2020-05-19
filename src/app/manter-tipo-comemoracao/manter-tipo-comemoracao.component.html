@@ -1,4 +1,4 @@
-<div class="ui-fluid">
+<div class="ui-fluid tamanho-fluid">
     <div class="ui-g-fluid caixaInterface">
       <div class="ui-g-fluid">
         <div class="ui-g">
@@ -7,7 +7,7 @@
           </div>
           <div class="ui-g-10 ui-g-offset-1 boxForm">
             <p-table [columns]="cols" [value]="tipos" selectionMode="single" [(selection)]="selectedTipo"
-              (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+              (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5">
               <ng-template pTemplate="caption">
                 Lista de Tipo Comemoração
               </ng-template>
@@ -32,7 +32,7 @@
                 </div>
               </ng-template>
             </p-table>
-  
+
             <p-dialog header="Detalhes Tipo" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
               showEffect="fade" [modal]="true" [style]="{width: '500px'}">
               <div class="ui-g ui-fluid" *ngIf="tipo">
@@ -55,4 +55,4 @@
       </div>
     </div>
   </div>
-  
+

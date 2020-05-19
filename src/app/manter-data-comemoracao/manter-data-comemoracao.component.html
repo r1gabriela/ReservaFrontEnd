@@ -1,4 +1,4 @@
-<div class="ui-fluid">
+<div class="ui-fluid tamanho-fluid">
   <div class="ui-g-fluid caixaInterface">
     <div class="ui-g-fluid">
       <div class="ui-g">
@@ -37,7 +37,7 @@
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <div class="ui-g ui-fluid" *ngIf="dataComemoracao">
               <div class="ui-g-12">
-                <p-autoComplete [(ngModel)]="dataComemoracao.IdPessoa" field="name" placeholder="Nome" [minLength]="3"
+                <p-autoComplete [(ngModel)]="dataComemoracao.pessoa.idPessoa" field="name" placeholder="Nome" [minLength]="3"
                   size="250"></p-autoComplete>
               </div>
               <div class="ui-g-12">
@@ -45,7 +45,7 @@
                 </p-calendar>
               </div>
               <div class="ui-g-12">
-                <p-dropdown [(ngModel)]="dataComemoracao.idTipoComemoracao" filter="true"
+                <p-dropdown [(ngModel)]="dataComemoracao.tipoComemoracao.idTipoComemoracao" filter="true"
                   placeholder="Tipo Comemoração">
                   <ng-template let-item pTemplate="selectedItem">
                     <span style="vertical-align:middle; margin-left: .5em"></span>

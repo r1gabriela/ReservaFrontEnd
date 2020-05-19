@@ -1,60 +1,46 @@
 <div class="ui-fluid">
   <img src="../../assets/imagens/background_app.png">
-    <div class="ui-g-fluid box">
-      <div class="ui-g-12 ui-md-12">
-      <form [formGroup]="formCadastro">
+  <div class="ui-g-fluid box">
+    <div class="ui-g-12 ui-md-12">
+      <form>
         <h1>Cadastro</h1>
         <div class="espaco">
-        <div class="ui-inputgroup">
-        <span class="ui-float-label">
-          <input id="nome" name="nome" formControlName="nome" type="text" size="50" pInputText>
-          <label for="float-input">NomeCompleto</label>
-        </span>
-        </div>
-      </div>
-      <div class="espaco">
-        <div class="ui-inputgroup">
-        <span class="ui-float-label">
-          <input id="login" name="login" formControlName="login" type="text" pInputText>
-          <label for="float-input">Login</label>
-        </span>
-        </div>
-      </div>
-      <div class="espaco">
-        <div class="ui-inputgroup">
-          <span class="ui-float-label">
-            <input id="senha" name="senha" formControlName="senha" type="password" pInputText>
-            <label for="float-input">Senha</label>
-          </span>
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input id="nome" [(ngModel)]="usuario.pessoa.nome" name="nome" type="text" size="50"
+                pInputText>
+              <label for="float-input">NomeCompleto</label>
+            </span>
           </div>
         </div>
         <div class="espaco">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input id="cpf" name="cpf" formControlName="cpf" type="text" pInputText>
+              <input id="login" [(ngModel)]="usuario.login" name="login" type="text" pInputText>
+              <label for="float-input">Login</label>
+            </span>
+          </div>
+        </div>
+        <div class="espaco">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input [(ngModel)]="usuario.senha" id="senha" name="senha" type="password"
+                pInputText>
+              <label for="float-input">Senha</label>
+            </span>
+          </div>
+        </div>
+        <div class="espaco">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input [(ngModel)]="usuario.pessoa.cpf" id="cpf" name="cpf" type="text" pInputText>
               <label for="float-input">CPF</label>
             </span>
           </div>
         </div>
-          <div class="espaco">
-            <div class="ui-inputgroup">
-              <span class="ui-float-label">
-                <input id="telefone" name="telefone" formControlName="telefone" type="tel" pInputText>
-                <label for="float-input">Telefone</label>
-              </span>
-              </div>
-            </div>
-              <div class="espaco">
-              <div class="ui-inputgroup">
-                <span class="ui-float-label">
-                  <input id="email" name="email" formControlName="email" type="email" pInputText>
-                  <label for="float-input">Email</label>
-                </span>
-                </div>
-              </div>
-        <button class="botaocadastrar" pButton type="button" label="Cadastrar" ></button>
-        <h3><a href="#">Já tem uma conta?</a></h3>
+        <button class="botaocadastrar" pButton type="button" (click)="cadastro()" label="Cadastrar"></button>
+        <h3><a href="login">Já tem uma conta?</a></h3>
       </form>
     </div>
-    </div>
   </div>
+</div>

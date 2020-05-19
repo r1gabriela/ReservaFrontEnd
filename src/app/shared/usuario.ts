@@ -1,11 +1,11 @@
+import { Pessoa } from './pessoa';
+import { Role } from './role';
+
 export class Usuario {
-  idUsuario: number;
-  idPessoa: number;
-  login: string;
-  senha: string;
-  ativo: boolean;
-  nome: string;
-  cpf: string;
-  telefone: string;
-  email: string;
+  idUsuario: number = 0;
+  pessoa: Pessoa = new Pessoa();
+  login: String;
+  senha: string = "";
+  role: Role = new Role();
+  ativo: boolean = true;
 }

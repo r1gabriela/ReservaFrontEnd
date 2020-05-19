@@ -1,5 +1,6 @@
 import { Mesa } from './../shared/mesa';
 import { Component, OnInit } from '@angular/core';
+import { MesaService } from '../shared/service/mesa.service';
 
 @Component({
   selector: 'app-manter-mesa',
@@ -20,6 +21,10 @@ export class ManterMesaComponent implements OnInit {
 
   cols: any[];
 
+  constructor(private mesaService: MesaService){
+
+  }
+
   ngOnInit() {
     this.cols = [
       { field: 'idMesa', header: 'Número' },
@@ -27,6 +32,7 @@ export class ManterMesaComponent implements OnInit {
       { field: 'localizacao', header: 'Localização' },
       { field: 'ativo', header: 'Ativo' }
     ];
+    this.listar();
   }
 
   showDialogToAdd() {
@@ -37,13 +43,24 @@ export class ManterMesaComponent implements OnInit {
 
   save() {
     this.displayDialog = false;
+    this.mesaService.salvar(this.mesa).subscribe(mesa => this.mesa = mesa);
+    this.listar();
   }
 
   delete() {
     this.displayDialog = false;
+    this.mesaService.excluir(this.mesa).subscribe(resp => Boolean);
+    this.listar();
   }
 
   onRowSelect(event) {
     this.displayDialog = true;
+    this.mesa = event.data;
+    this.newMesa = false;
   }
+
+  listar(){
+   this.mesaService.listar().subscribe(mesas => this.mesas = mesas);
+  }
+
 }
