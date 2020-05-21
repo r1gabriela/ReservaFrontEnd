@@ -1,4 +1,4 @@
-<div class="ui-fluid">
+<div class="ui-fluid tamanho-fluid">
     <div class="ui-g-fluid caixaInterface">
       <div class="ui-g-fluid">
         <div class="ui-g">
@@ -32,21 +32,23 @@
                 </div>
               </ng-template>
             </p-table>
-  
+
             <p-dialog header="Detalhes Tipo" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
               showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-              <div class="ui-g ui-fluid" *ngIf="tipo">
-                <div class="ui-g-12">
-                  <span class="ui-float-label">
-                    <input [(ngModel)]="tipo.descricao" name="descricao" id="descricao" type="text" min="1" pInputText>
-                    <label for="descricao">Descrição</label>
-                  </span>
+              <form [formGroup]="manterTipoComemoracaoForm">
+                <div class="ui-g ui-fluid" *ngIf="tipo">
+                  <div class="ui-g-12">
+                    <span class="ui-float-label">
+                      <input formControlName="descricao" [(ngModel)]="tipo.descricao" name="descricao" id="descricao" type="text" min="1" pInputText>
+                      <label for="descricao">Descrição: *</label>
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </form>
               <p-footer>
                 <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                  <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-                  <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                  <button type="button" pButton icon="pi pi-times" [disabled]="!manterTipoComemoracaoForm.valid" (click)="delete()" label="Delete"></button>
+                  <button type="button" pButton icon="pi pi-check" [disabled]="!manterTipoComemoracaoForm.valid" (click)="save()" label="Save"></button>
                 </div>
               </p-footer>
             </p-dialog>
@@ -55,4 +57,4 @@
       </div>
     </div>
   </div>
-  
+
