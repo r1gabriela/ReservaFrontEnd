@@ -2,24 +2,24 @@
   <img class="fundo" src="../../assets/imagens/background_app.png">
   <div class="box ui-g-fluid">
     <div class="ui-g-12 ui-md-12">
-      <form>
+      <form [formGroup]="loginForm">
         <img class="icone" src="../../assets/imagens/icone_usuario.png">
         <h1>Login</h1>
         <div class="senha">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input [(ngModel)]="usuario.login" name="login" id="Login" type="text" pInputText>
-              <label for="login">Login</label>
+              <input [(ngModel)]="usuario.login" formControlName="login" name="login" id="Login" type="text" pInputText>
+              <label for="login">Login: *</label>
             </span>
           </div>
           <div class="senha">
             <span class="ui-float-label">
-              <input [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" size="40%" pInputText>
-              <label for="senha">Senha</label>
+              <input [(ngModel)]="usuario.senha" name="senha" formControlName="senha" id="senha" type="password" size="40%" pInputText>
+              <label for="senha">Senha: *</label>
             </span>
           </div>
         </div>
-        <button class="botaologin" pButton type="button" label="Login" (click)="logar()"></button>
+        <button class="botaologin" pButton type="button" label="Login" [disabled]="!loginForm.valid" (click)="logar()"></button>
         <h3><a href="/cadastro">Cadastre-se</a></h3>
       </form>
     </div>

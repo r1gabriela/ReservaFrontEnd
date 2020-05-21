@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dependente } from '../shared/dependente';
 import { DependenteService } from '../shared/service/dependente.service';
+import { Validators,FormControl,FormGroup,FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-manter-dependente',
@@ -8,6 +9,8 @@ import { DependenteService } from '../shared/service/dependente.service';
   styleUrls: ['./manter-dependente.component.css']
 })
 export class ManterDependenteComponent implements OnInit {
+
+  manterDependenteForm: FormGroup;
 
   displayDialog: boolean;
 
@@ -21,9 +24,7 @@ export class ManterDependenteComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private dependenteService: DependenteService){
-
-  }
+  constructor(private dependenteService: DependenteService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.cols = [
@@ -31,6 +32,15 @@ export class ManterDependenteComponent implements OnInit {
       { field: 'cpf', header: 'CPF' },
       { field: 'ativo', header: 'Ativo' }
     ];
+
+    this.createForm();
+  }
+
+  createForm(){
+    this.manterDependenteForm = this.fb.group({
+      'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
+      'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
+    });
   }
 
   showDialogToAdd() {

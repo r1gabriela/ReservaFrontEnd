@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../shared/service/usuario.service';
 import { Usuario } from '../shared/usuario';
+import {Validators,FormControl,FormGroup,FormBuilder, Form} from '@angular/forms';
 
 @Component({
   selector: 'app-manter-usuario',
@@ -8,6 +9,8 @@ import { Usuario } from '../shared/usuario';
   styleUrls: ['./manter-usuario.component.css']
 })
 export class ManterUsuarioComponent implements OnInit {
+
+  manterUsuarioForm: FormGroup;
 
   displayDialog: boolean;
 
@@ -21,16 +24,24 @@ export class ManterUsuarioComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.listarTodos();
+    this.createForm();
   }
 
   showDialogToAdd() {
     this.newUsuario = true;
     this.displayDialog = true;
     this.usuario = new Usuario();
+  }
+
+  createForm(){
+    this.manterUsuarioForm = this.fb.group({
+      'senha': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])),
+      'login': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)]))
+    });
   }
 
   listarTodos(){

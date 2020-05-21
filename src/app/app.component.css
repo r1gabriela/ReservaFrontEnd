@@ -5,12 +5,8 @@
 
 .espacamento{
   padding: 3%;
-  height: 92%;
+  height: 94%;
 }
-
-/* div {
-  height: 100% !important;
-} */
 
 .footerApp p{
   color: white;
@@ -22,12 +18,17 @@
 }
 
 .footerApp{
-  height: 8% !important;
+  height: 6% !important;
   padding-right: 1%;
+  width: 100% !important;
 }
 
 .painel{
   height: 100% !important;
+}
+
+.painel-cel{
+  height: 88% !important;
 }
 
 .p-grid{

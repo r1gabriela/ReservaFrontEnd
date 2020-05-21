@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+declare const $: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Smart Booking';
+
+  isMobileMenu() {
+    if ($(window).width() > 995) {
+      return false;
+    }
+    return true;
+  };
+
 }
