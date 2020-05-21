@@ -35,28 +35,30 @@
 
           <p-dialog header="Detalhes Data Comemoração" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="dataComemoracao">
-              <div class="ui-g-12">
-                <p-autoComplete [(ngModel)]="dataComemoracao.pessoa.idPessoa" field="name" placeholder="Nome" [minLength]="3"
-                  size="250"></p-autoComplete>
+            <form [formGroup]="manterDataComemorativaForm">
+              <div class="ui-g ui-fluid" *ngIf="dataComemoracao">
+                <div class="ui-g-12">
+                  <p-autoComplete formControlName="nome" [(ngModel)]="dataComemoracao.pessoa.idPessoa" field="name" placeholder="Nome: *" [minLength]="3"
+                    size="250"></p-autoComplete>
+                </div>
+                <div class="ui-g-12">
+                  <p-calendar formControlName="data" name="dataComemoracao" [(ngModel)]="dataComemoracao.dataComemoracao" placeholder="Data: *">
+                  </p-calendar>
+                </div>
+                <div class="ui-g-12">
+                  <p-dropdown formControlName="tipoDeComemoracao" [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true"
+                    placeholder="Tipo Comemoração: *">
+                    <ng-template let-item pTemplate="selectedItem">
+                      <span style="vertical-align:middle; margin-left: .5em"></span>
+                    </ng-template>
+                  </p-dropdown>
+                </div>
               </div>
-              <div class="ui-g-12">
-                <p-calendar name="dataComemoracao" [(ngModel)]="dataComemoracao.dataComemoracao" placeholder="Data">
-                </p-calendar>
-              </div>
-              <div class="ui-g-12">
-                <p-dropdown [(ngModel)]="dataComemoracao.tipoComemoracao.idTipoComemoracao" filter="true"
-                  placeholder="Tipo Comemoração">
-                  <ng-template let-item pTemplate="selectedItem">
-                    <span style="vertical-align:middle; margin-left: .5em"></span>
-                  </ng-template>
-                </p-dropdown>
-              </div>
-            </div>
+            </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                <button type="button" pButton icon="pi pi-times" [disabled]="!manterDataComemorativaForm.valid" (click)="delete()" label="Delete"></button>
+                <button type="button" pButton icon="pi pi-check" [disabled]="!manterDataComemorativaForm.valid" (click)="save()" label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataComemorativa } from '../shared/dataComemorativa';
 import { DataComemorativaService } from '../shared/service/dataComemorativa.service';
+import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-manter-data-comemoracao',
@@ -8,6 +9,9 @@ import { DataComemorativaService } from '../shared/service/dataComemorativa.serv
   styleUrls: ['./manter-data-comemoracao.component.css']
 })
 export class ManterDataComemoracaoComponent implements OnInit {
+
+  manterDataComemorativaForm: FormGroup;
+
   displayDialog: boolean;
 
   selectedData: DataComemorativa;
@@ -20,9 +24,7 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private dataComemorativaService: DataComemorativaService){
-
-  }
+  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.cols = [
@@ -32,6 +34,17 @@ export class ManterDataComemoracaoComponent implements OnInit {
     ];
 
     this.listar();
+
+    this.createForm();
+  }
+
+
+  createForm(){
+    this.manterDataComemorativaForm = this.fb.group({
+      'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
+      'data': new FormControl('', Validators.required),
+      'tipoDeComemoracao': new FormControl('', Validators.required)
+    });
   }
 
   showDialogToAdd() {
