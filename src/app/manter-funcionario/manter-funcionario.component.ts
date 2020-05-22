@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from '../shared/funcionario';
 import { FuncionarioService } from '../shared/service/funcionario.service'
+import {Validators,FormControl,FormGroup,FormBuilder} from '@angular/forms';
+import { TipoFuncionario } from '../shared/tipoFuncionario';
 
 @Component({
   selector: 'app-manter-funcionario',
@@ -8,6 +10,8 @@ import { FuncionarioService } from '../shared/service/funcionario.service'
   styleUrls: ['./manter-funcionario.component.css']
 })
 export class ManterFuncionarioComponent implements OnInit {
+
+  manterFuncionarioForm: FormGroup;
 
   displayDialog: boolean;
 
@@ -21,7 +25,7 @@ export class ManterFuncionarioComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private funcionarioService: FuncionarioService) { }
+  constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.cols = [
@@ -30,8 +34,18 @@ export class ManterFuncionarioComponent implements OnInit {
       { field: 'tipoFuncionario', header: 'Tipo' },
     ];
 
+  this.createForm();
+
   this.listarTodos();
 
+  }
+
+  createForm(){
+    this.manterFuncionarioForm = this.fb.group({
+      'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
+      'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
+      'tipo': new FormControl('', Validators.required)
+    });
   }
 
   showDialogToAdd() {

@@ -1,4 +1,4 @@
-<div class="ui-fluid">
+<div class="ui-fluid tamanho-fluid">
   <div class="ui-g-fluid caixaInterface">
     <div class="ui-g-fluid">
       <div class="ui-g">
@@ -27,26 +27,29 @@
               </tr>
             </ng-template>
           </p-table>
+
           <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="usuario">
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="usuario.login" name="login" id="login" type="text" pInputText>
-                  <label for="login">Login</label>
-                </span>
+            <form [formGroup]="manterUsuarioForm">
+              <div class="ui-g ui-fluid" *ngIf="usuario">
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input  formControlName="login" [(ngModel)]="usuario.login" name="login" id="login" type="text" pInputText>
+                    <label for="login">Login: *</label>
+                  </span>
+                </div>
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input  formControlName="senha" [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" pInputText>
+                    <label for="senha">Senha: *</label>
+                  </span>
+                </div>
               </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" pInputText>
-                  <label for="senha">Senha</label>
-                </span>
-              </div>
-            </div>
+            </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                <button [disabled]="!manterUsuarioForm.valid" type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
+                <button [disabled]="!manterUsuarioForm.valid" type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>

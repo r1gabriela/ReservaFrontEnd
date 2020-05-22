@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoComemoracao } from '../shared/tipoComemoracao';
+import {Validators,FormControl,FormGroup,FormBuilder} from '@angular/forms';
 
 import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service';
 
@@ -9,6 +10,8 @@ import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.servi
   styleUrls: ['./manter-tipo-comemoracao.component.css']
 })
 export class ManterTipoComemoracaoComponent implements OnInit {
+
+  manterTipoComemoracaoForm: FormGroup;
 
   displayDialog: boolean;
 
@@ -22,7 +25,7 @@ export class ManterTipoComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private tipoComemoracaoService: TipoComemoracaoService){ }
+  constructor(private tipoComemoracaoService: TipoComemoracaoService, private fb: FormBuilder){ }
 
   ngOnInit() {
     this.cols = [
@@ -30,6 +33,14 @@ export class ManterTipoComemoracaoComponent implements OnInit {
       { field: 'ativo', header: 'Ativo' }
     ];
     this.listarTodos();
+
+    this.createForm();
+  }
+
+  createForm(){
+    this.manterTipoComemoracaoForm = this.fb.group({
+      'descricao': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
+    });
   }
 
   showDialogToAdd() {
