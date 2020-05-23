@@ -4,6 +4,8 @@ import { DataComemorativaService } from '../shared/service/dataComemorativa.serv
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { TipoComemoracao } from '../shared/tipoComemoracao'
 import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service'
+import { DependenteService } from '../shared/service/dependente.service'
+import { Pessoa } from '../shared/pessoa';
 
 @Component({
   selector: 'app-manter-data-comemoracao',
@@ -11,6 +13,8 @@ import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.servi
   styleUrls: ['./manter-data-comemoracao.component.css']
 })
 export class ManterDataComemoracaoComponent implements OnInit {
+
+  pessoas: Pessoa[];
 
   tipos: TipoComemoracao[];
 
@@ -28,7 +32,7 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder, private tipoComemoracaoService: TipoComemoracaoService) { }
+  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder, private tipoComemoracaoService: TipoComemoracaoService, private dependenteService: DependenteService) { }
 
   ngOnInit() {
     this.cols = [
@@ -42,8 +46,9 @@ export class ManterDataComemoracaoComponent implements OnInit {
     this.listarTipoComemoracao();
 
     this.createForm();
-  }
 
+    this.listarPessoasDeCliente();
+  }
 
   createForm(){
     this.manterDataComemorativaForm = this.fb.group({
@@ -81,6 +86,10 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   listarTipoComemoracao(){
     this.tipoComemoracaoService.listarPorAtivo().subscribe(tipos => this.tipos = tipos)
+  }
+
+  listarPessoasDeCliente(){
+    this.dependenteService.listarPessoasDeCliente().subscribe(pessoa => this.pessoas = pessoa);
   }
 
 }

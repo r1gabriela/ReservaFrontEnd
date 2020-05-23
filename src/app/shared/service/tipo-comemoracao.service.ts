@@ -22,7 +22,7 @@ export class TipoComemoracaoService {
     return this.httpClient.post<TipoComemoracao>(this.SALVAR, tipo);
   }
 
-  deletar(tipo : TipoComemoracao) {
+  deletar(tipo: TipoComemoracao) {
     return this.httpClient.post(this.EXCLUIR, tipo);
   }
 
