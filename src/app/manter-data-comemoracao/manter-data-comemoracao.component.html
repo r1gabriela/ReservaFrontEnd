@@ -46,11 +46,8 @@
                   </p-calendar>
                 </div>
                 <div class="ui-g-12">
-                  <p-dropdown formControlName="tipoDeComemoracao" [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true"
+                  <p-dropdown selectId optionLabel="descricao" [options]="tipos" formControlName="tipoComemoracao" [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true"
                     placeholder="Tipo Comemoração: *">
-                    <ng-template let-item pTemplate="selectedItem">
-                      <span style="vertical-align:middle; margin-left: .5em"></span>
-                    </ng-template>
                   </p-dropdown>
                 </div>
               </div>

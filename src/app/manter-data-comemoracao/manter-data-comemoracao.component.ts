@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataComemorativa } from '../shared/dataComemorativa';
 import { DataComemorativaService } from '../shared/service/dataComemorativa.service';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { TipoComemoracao } from '../shared/tipoComemoracao'
+import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service'
 
 @Component({
   selector: 'app-manter-data-comemoracao',
@@ -9,6 +11,8 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
   styleUrls: ['./manter-data-comemoracao.component.css']
 })
 export class ManterDataComemoracaoComponent implements OnInit {
+
+  tipos: TipoComemoracao[];
 
   manterDataComemorativaForm: FormGroup;
 
@@ -24,7 +28,7 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder) { }
+  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder, private tipoComemoracaoService: TipoComemoracaoService) { }
 
   ngOnInit() {
     this.cols = [
@@ -35,6 +39,8 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
     this.listar();
 
+    this.listarTipoComemoracao();
+
     this.createForm();
   }
 
@@ -43,7 +49,7 @@ export class ManterDataComemoracaoComponent implements OnInit {
     this.manterDataComemorativaForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'data': new FormControl('', Validators.required),
-      'tipoDeComemoracao': new FormControl('', Validators.required)
+      'tipoComemoracao': new FormControl('', Validators.required)
     });
   }
 
@@ -71,6 +77,10 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   listar(){
     this.dataComemorativaService.listar().subscribe(datas => this.datas = datas);
+  }
+
+  listarTipoComemoracao(){
+    this.tipoComemoracaoService.listarPorAtivo().subscribe(tipos => this.tipos = tipos)
   }
 
 }

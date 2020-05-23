@@ -9,7 +9,7 @@ export class DataComemorativaService {
 
   private SALVAR = 'http://localhost:8080/restaurante/rest/dataComemorativa/salvar';
   private EXCLUIR = 'http://localhost:8080/restaurante/rest/dataComemorativa/excluir';
-  private LISTAR = 'http://localhost:8080/restaurante/rest/dataComemorativa/listarTodos';
+  private LISTAR = 'http://localhost:8080/restaurante/rest/dataComemorativa/listar';
 
   constructor(private httpClient: HttpClient) { }
 
