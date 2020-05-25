@@ -38,19 +38,16 @@
             <form [formGroup]="manterDataComemorativaForm">
               <div class="ui-g ui-fluid" *ngIf="dataComemoracao">
                 <div class="ui-g-12">
-                  <p-autoComplete formControlName="nome" [(ngModel)]="dataComemoracao.pessoa.idPessoa" field="name" placeholder="Nome: *" [minLength]="3"
-                    size="250"></p-autoComplete>
+                  <p-dropdown  selectId optionLabel="nome" [options]="pessoas" formControlName="nome" [(ngModel)]="dataComemoracao.pessoa" filter="true"
+                  placeholder="Nome: *"></p-dropdown>
                 </div>
                 <div class="ui-g-12">
                   <p-calendar formControlName="data" name="dataComemoracao" [(ngModel)]="dataComemoracao.dataComemoracao" placeholder="Data: *">
                   </p-calendar>
                 </div>
                 <div class="ui-g-12">
-                  <p-dropdown formControlName="tipoDeComemoracao" [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true"
+                  <p-dropdown selectId optionLabel="descricao" [options]="tipos" formControlName="tipoComemoracao" [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true"
                     placeholder="Tipo Comemoração: *">
-                    <ng-template let-item pTemplate="selectedItem">
-                      <span style="vertical-align:middle; margin-left: .5em"></span>
-                    </ng-template>
                   </p-dropdown>
                 </div>
               </div>

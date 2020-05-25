@@ -7,5 +7,5 @@ export class DataComemorativa {
 	pessoa: Pessoa = new Pessoa();
 	cliente: Cliente;
 	tipoComemoracao: TipoComemoracao;
-	dataComemoracao: Date = new Date();
+	dataComemoracao: Date;
 }
