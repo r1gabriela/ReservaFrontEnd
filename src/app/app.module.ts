@@ -28,6 +28,7 @@ import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter
 import { ManterClienteComponent } from './manter-cliente/manter-cliente.component';
 import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
 import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.componen
     ManterClienteComponent,
     ManterFuncionarioComponent,
     ManterUsuarioComponent,
+    ClienteComponent,
   ],
   imports: [
     BrowserModule,

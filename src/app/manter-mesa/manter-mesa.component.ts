@@ -1,6 +1,7 @@
 import { Mesa } from './../shared/mesa';
 import { Component, OnInit } from '@angular/core';
 import { MesaService } from '../shared/service/mesa.service';
+import {Validators,FormControl,FormGroup,FormBuilder, Form} from '@angular/forms';
 
 @Component({
   selector: 'app-manter-mesa',
@@ -8,6 +9,8 @@ import { MesaService } from '../shared/service/mesa.service';
   styleUrls: ['./manter-mesa.component.css']
 })
 export class ManterMesaComponent implements OnInit {
+
+  manterMesaForm: FormGroup;
 
   displayDialog: boolean;
 
@@ -21,8 +24,15 @@ export class ManterMesaComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private mesaService: MesaService){
+  constructor(private mesaService: MesaService, private fb: FormBuilder){
 
+  }
+
+  createForm(){
+    this.manterMesaForm = this.fb.group({
+      'capacidade': new FormControl('', Validators.compose([Validators.required])),
+      'localizacao': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
+    });
   }
 
   ngOnInit() {
@@ -33,6 +43,8 @@ export class ManterMesaComponent implements OnInit {
       { field: 'ativo', header: 'Ativo' }
     ];
     this.listar();
+
+    this.createForm();
   }
 
   showDialogToAdd() {

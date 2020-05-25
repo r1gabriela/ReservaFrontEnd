@@ -12,6 +12,7 @@ export class TipoComemoracaoService {
   private SALVAR = 'http://localhost:8080/restaurante/rest/tipoComemoracao/salvar';
   private EXCLUIR = 'http://localhost:8080/restaurante/rest/tipoComemoracao/excluir';
   private LISTARTODOS = 'http://localhost:8080/restaurante/rest/tipoComemoracao/listarTodos';
+  private LISTARATIVO = 'http://localhost:8080/restaurante/rest/tipoComemoracao/listarPorAtivo';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,16 +21,18 @@ export class TipoComemoracaoService {
   }
 
   salvar(tipo: TipoComemoracao): Observable<TipoComemoracao>{
-    return this.httpClient.post<TipoComemoracao>(this.SALVAR, tipo).pipe(catchError(this.vamo));
+    return this.httpClient.post<TipoComemoracao>(this.SALVAR, tipo).pipe(catchError(this.handleError));
   }
 
-  deletar(tipo : TipoComemoracao) {
+  deletar(tipo: TipoComemoracao) {
     return this.httpClient.post(this.EXCLUIR, tipo);
   }
 
-  vamo(error: HttpErrorResponse) {
-    debugger
+  handleError(error: HttpErrorResponse) {
     return throwError(error.error);
   }
 
+  listarPorAtivo() {
+    return this.httpClient.get<TipoComemoracao[]>(this.LISTARATIVO);
+  }
 }

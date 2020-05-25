@@ -2,43 +2,43 @@
   <img src="../../assets/imagens/background_app.png">
   <div class="ui-g-fluid box">
     <div class="ui-g-12 ui-md-12">
-      <form>
+      <form [formGroup]="usuarioForm">
         <h1>Cadastro</h1>
         <div class="espaco">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input id="nome" [(ngModel)]="usuario.pessoa.nome" name="nome" type="text" size="50"
-                pInputText>
-              <label for="float-input">NomeCompleto</label>
+              <input id="nome" [(ngModel)]="usuario.pessoa.nome" formControlName="nome" name="nome" type="text" size="50"
+                pInputText >
+              <label for="float-input">Nome completo: *</label>
             </span>
           </div>
         </div>
         <div class="espaco">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input id="login" [(ngModel)]="usuario.login" name="login" type="text" pInputText>
-              <label for="float-input">Login</label>
+              <input id="login" [(ngModel)]="usuario.login" formControlName="login" name="login" type="text" pInputText >
+              <label for="float-input">Login: *</label>
             </span>
           </div>
         </div>
         <div class="espaco">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input [(ngModel)]="usuario.senha" id="senha" name="senha" type="password"
-                pInputText>
-              <label for="float-input">Senha</label>
+              <input [(ngModel)]="usuario.senha" id="senha" formControlName="senha" name="senha" type="password"
+                pInputText >
+              <label for="float-input">Senha: *</label>
             </span>
           </div>
         </div>
         <div class="espaco">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input [(ngModel)]="usuario.pessoa.cpf" id="cpf" name="cpf" type="text" pInputText>
-              <label for="float-input">CPF</label>
+              <input [(ngModel)]="usuario.pessoa.cpf" id="cpf" name="cpf" formControlName="cpf" type="text" pInputText >
+              <label for="float-input">CPF: *</label>
             </span>
           </div>
         </div>
-        <button class="botaocadastrar" pButton type="button" (click)="cadastro()" label="Cadastrar"></button>
+        <a href="cliente/cadastro"><button class="botaocadastrar" pButton type="button" [disabled]="!usuarioForm.valid" (click)="cadastro()" label="Cadastrar"></button></a>
         <h3><a href="login">Já tem uma conta?</a></h3>
       </form>
     </div>

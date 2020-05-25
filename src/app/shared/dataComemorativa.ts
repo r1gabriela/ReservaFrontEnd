@@ -5,7 +5,7 @@ import { TipoComemoracao } from './tipoComemoracao';
 export class DataComemorativa {
 	idDataComemorativa: number = 0;
 	pessoa: Pessoa = new Pessoa();
-	cliente: Cliente = new Cliente();
-	tipoComemoracao: TipoComemoracao = new TipoComemoracao();
-	dataComemoracao: Date = new Date();
+	cliente: Cliente;
+	tipoComemoracao: TipoComemoracao;
+	dataComemoracao: Date;
 }
