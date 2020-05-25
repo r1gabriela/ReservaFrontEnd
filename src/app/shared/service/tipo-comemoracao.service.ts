@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { TipoComemoracao } from '../tipoComemoracao';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +19,17 @@ export class TipoComemoracaoService {
     return this.httpClient.get<TipoComemoracao[]>(`${this.LISTARTODOS}`);
   }
 
-  salvar(tipo: TipoComemoracao) {
-    return this.httpClient.post<TipoComemoracao>(this.SALVAR, tipo);
+  salvar(tipo: TipoComemoracao): Observable<TipoComemoracao>{
+    return this.httpClient.post<TipoComemoracao>(this.SALVAR, tipo).pipe(catchError(this.vamo));
   }
 
   deletar(tipo : TipoComemoracao) {
     return this.httpClient.post(this.EXCLUIR, tipo);
   }
+
+  vamo(error: HttpErrorResponse) {
+    debugger
+    return throwError(error.error);
+  }
+
 }

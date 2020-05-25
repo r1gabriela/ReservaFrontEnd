@@ -13,6 +13,9 @@ import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HttpClientModule } from '@angular/common/http';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ToastModule} from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -56,8 +59,10 @@ import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.componen
     DropdownModule,
     TableModule,
     DialogModule,
-    FormsModule,
-    TieredMenuModule
+    TieredMenuModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

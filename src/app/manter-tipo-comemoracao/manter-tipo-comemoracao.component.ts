@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {Message} from 'primeng/api';
+
 import { TipoComemoracao } from '../shared/tipoComemoracao';
 
 import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service';
@@ -6,7 +9,8 @@ import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.servi
 @Component({
   selector: 'app-manter-tipo-comemoracao',
   templateUrl: './manter-tipo-comemoracao.component.html',
-  styleUrls: ['./manter-tipo-comemoracao.component.css']
+  styleUrls: ['./manter-tipo-comemoracao.component.css'],
+  providers: [MessageService],
 })
 export class ManterTipoComemoracaoComponent implements OnInit {
 
@@ -22,7 +26,7 @@ export class ManterTipoComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private tipoComemoracaoService: TipoComemoracaoService){ }
+  constructor(private tipoComemoracaoService: TipoComemoracaoService, private messageService: MessageService){ }
 
   ngOnInit() {
     this.cols = [
@@ -39,9 +43,14 @@ export class ManterTipoComemoracaoComponent implements OnInit {
   }
 
   save() {
-    this.displayDialog = false;
-    this.tipoComemoracaoService.salvar(this.tipo).subscribe(resp=> this.tipo = resp);
-    this.listarTodos();
+    this.tipoComemoracaoService.salvar(this.tipo).subscribe(resp=> {
+      this.tipo = resp;
+      this.displayDialog = false;
+      this.listarTodos();
+      this.messageService.add({key: 'msg', severity:'success', summary:'Tipo Comemoração', detail: "Operação efetuada com sucesso", life: 3000});
+    }, (error) => {
+      this.messageService.add({key: 'msg', severity:'error', summary:'Error', detail: error.message, life: 3000});
+    });
   }
 
   delete() {
