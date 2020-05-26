@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Mesa } from '../mesa';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,4 @@ export class MesaService {
   excluir(mesa: Mesa){
     return this.httpClient.post<Boolean>(this.EXCLUIR, mesa);
   }
-
 }

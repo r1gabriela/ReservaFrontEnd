@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DataComemorativa } from '../dataComemorativa';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class DataComemorativaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(dataComemorativa: DataComemorativa){
-    return this.httpClient.post<DataComemorativa>(this.SALVAR, dataComemorativa);
+  salvar(dataComemorativa: DataComemorativa): Observable <DataComemorativa> {
+    return this.httpClient.post<DataComemorativa>(this.SALVAR, dataComemorativa).pipe(catchError(this.handleError));
   }
 
   listar(){
@@ -23,6 +25,10 @@ export class DataComemorativaService {
 
   excluir(dataComemorativa: DataComemorativa){
     return this.httpClient.post<Boolean>(this.EXCLUIR, dataComemorativa);
+  }
+
+  handleError(error: HttpErrorResponse){
+    return throwError(error.error);
   }
 
 }

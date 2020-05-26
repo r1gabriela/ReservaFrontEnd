@@ -2,11 +2,13 @@ import { Cliente } from '../shared/cliente';
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../shared/service/cliente.service';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-manter-cliente',
   templateUrl: './manter-cliente.component.html',
-  styleUrls: ['./manter-cliente.component.css']
+  styleUrls: ['./manter-cliente.component.css'],
+  providers: [MessageService],
 })
 export class ManterClienteComponent implements OnInit {
 
@@ -24,7 +26,7 @@ export class ManterClienteComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private clienteService: ClienteService, private fb: FormBuilder) { }
+  constructor(private clienteService: ClienteService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
     this.cols = [
@@ -39,7 +41,7 @@ export class ManterClienteComponent implements OnInit {
     this.listarTodos();
   }
 
-  createForm(){
+  createForm() {
     this.manterClienteForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
@@ -55,8 +57,14 @@ export class ManterClienteComponent implements OnInit {
   }
 
   save() {
-    this.displayDialog = false;
-    this.clienteService.salvar(this.cliente).subscribe(resp => this.cliente = resp)
+    this.clienteService.salvar(this.cliente).subscribe(resp => {
+      this.cliente = resp;
+      this.displayDialog = false;
+      this.listarTodos();
+      this.messageService.add({ key: 'msg', severity: 'success', summary: 'Tipo Comemoração', detail: "Operação efetuada com sucesso", life: 3000 });
+    }, (error) => {
+      this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+    });
   }
 
   delete() {

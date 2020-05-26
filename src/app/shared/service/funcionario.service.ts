@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Funcionario } from '../funcionario';
+import { throwError, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +14,16 @@ export class FuncionarioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(funcionario: Funcionario){
-    return this.httpClient.post<Funcionario>(this.SALVAR, funcionario);
+  salvar(funcionario: Funcionario): Observable<Funcionario>{
+    return this.httpClient.post<Funcionario>(this.SALVAR, funcionario).pipe(catchError(this.handleError));
   }
 
   listarTodos(){
     return this.httpClient.get<Funcionario[]>(this.LISTARTODOS);
+  }
+
+  handleError(error:HttpErrorResponse){
+    return throwError(error.error);
   }
 
 }

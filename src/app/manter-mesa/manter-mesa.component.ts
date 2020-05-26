@@ -2,11 +2,13 @@ import { Mesa } from './../shared/mesa';
 import { Component, OnInit } from '@angular/core';
 import { MesaService } from '../shared/service/mesa.service';
 import {Validators,FormControl,FormGroup,FormBuilder, Form} from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-manter-mesa',
   templateUrl: './manter-mesa.component.html',
-  styleUrls: ['./manter-mesa.component.css']
+  styleUrls: ['./manter-mesa.component.css'],
+  providers: [MessageService]
 })
 export class ManterMesaComponent implements OnInit {
 
@@ -24,7 +26,7 @@ export class ManterMesaComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private mesaService: MesaService, private fb: FormBuilder){
+  constructor(private mesaService: MesaService, private fb: FormBuilder, private messageService: MessageService){
 
   }
 
@@ -54,8 +56,8 @@ export class ManterMesaComponent implements OnInit {
   }
 
   save() {
-    this.displayDialog = false;
     this.mesaService.salvar(this.mesa).subscribe(mesa => this.mesa = mesa);
+    this.displayDialog = false;
     this.listar();
   }
 

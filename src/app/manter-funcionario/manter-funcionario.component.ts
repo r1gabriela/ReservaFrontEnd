@@ -3,11 +3,13 @@ import { Funcionario } from '../shared/funcionario';
 import { FuncionarioService } from '../shared/service/funcionario.service'
 import {Validators,FormControl,FormGroup,FormBuilder} from '@angular/forms';
 import { TipoFuncionario } from '../shared/tipoFuncionario';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-manter-funcionario',
   templateUrl: './manter-funcionario.component.html',
-  styleUrls: ['./manter-funcionario.component.css']
+  styleUrls: ['./manter-funcionario.component.css'],
+  providers:[MessageService]
 })
 export class ManterFuncionarioComponent implements OnInit {
 
@@ -25,7 +27,7 @@ export class ManterFuncionarioComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder) { }
+  constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
     this.cols = [
@@ -35,9 +37,7 @@ export class ManterFuncionarioComponent implements OnInit {
     ];
 
   this.createForm();
-
   this.listarTodos();
-
   }
 
   createForm(){
@@ -54,10 +54,6 @@ export class ManterFuncionarioComponent implements OnInit {
     this.funcionario = new Funcionario();
   }
 
-  save() {
-    this.displayDialog = false;
-  }
-
   delete() {
     this.displayDialog = false;
   }
@@ -67,8 +63,14 @@ export class ManterFuncionarioComponent implements OnInit {
   }
 
   salvar(){
-    this.funcionarioService.salvar(this.funcionario).subscribe(funcionario => this.funcionario = funcionario);
-    this.listarTodos();
+    this.displayDialog = false;
+    this.funcionarioService.salvar(this.funcionario).subscribe(funcionario =>{
+      this.funcionario = funcionario; 
+      this.messageService.add({ key: 'msg', severity: 'success', summary: 'Funcionario', detail: "Operação efetuada com sucesso", life: 3000 });
+      this.listarTodos();
+    }, (error) => {
+      this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+    }); 
   }
 
   listarTodos(){

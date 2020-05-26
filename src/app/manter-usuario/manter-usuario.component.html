@@ -28,6 +28,8 @@
             </ng-template>
           </p-table>
 
+          <p-toast position="top-right" key="msg"></p-toast>
+
           <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <form [formGroup]="manterUsuarioForm">

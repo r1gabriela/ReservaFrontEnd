@@ -1,7 +1,9 @@
 import { Dependente } from '../dependente';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Pessoa } from '../pessoa';
+import { catchError } from 'rxjs/operators';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,8 @@ export class DependenteService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(dependente: Dependente){
-    return this.httpClient.post<Dependente>(this.SALVAR, dependente);
+  salvar(dependente: Dependente): Observable<Dependente> {
+    return this.httpClient.post<Dependente>(this.SALVAR, dependente).pipe(catchError(this.handleError));
   }
 
   excluir(dependente: Dependente){
@@ -24,6 +26,10 @@ export class DependenteService {
 
   listarPessoasDeCliente() {
     return this.httpClient.get<Pessoa[]>(this.LISTARPESSOASDECLIENTE);
+  }
+
+  handleError(error: HttpErrorResponse){
+    return throwError(error.error);
   }
 
 }

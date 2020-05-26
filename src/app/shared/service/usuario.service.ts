@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../usuario';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { throwError, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +33,11 @@ export class UsuarioService {
     return this.httpClient.post<Boolean>(this.EXCLUIR, usuario);
   }
 
-  salvar(usuario: Usuario){
-    return this.httpClient.post<Usuario>(this.SALVAR, usuario);
+  salvar(usuario: Usuario): Observable<Usuario>{
+    return this.httpClient.post<Usuario>(this.SALVAR, usuario).pipe(catchError(this.handleError));
   }
 
+  handleError(error: HttpErrorResponse){
+    return throwError(error.error);
+  }
 }

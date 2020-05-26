@@ -6,11 +6,13 @@ import { TipoComemoracao } from '../shared/tipoComemoracao'
 import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service'
 import { DependenteService } from '../shared/service/dependente.service'
 import { Pessoa } from '../shared/pessoa';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-manter-data-comemoracao',
   templateUrl: './manter-data-comemoracao.component.html',
-  styleUrls: ['./manter-data-comemoracao.component.css']
+  styleUrls: ['./manter-data-comemoracao.component.css'],
+  providers: [MessageService]
 })
 export class ManterDataComemoracaoComponent implements OnInit {
 
@@ -32,7 +34,10 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder, private tipoComemoracaoService: TipoComemoracaoService, private dependenteService: DependenteService) { }
+  constructor(private dataComemorativaService: DataComemorativaService, private fb: FormBuilder,
+    private tipoComemoracaoService: TipoComemoracaoService,
+    private dependenteService: DependenteService,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.cols = [
@@ -50,7 +55,7 @@ export class ManterDataComemoracaoComponent implements OnInit {
     this.listarPessoasDeCliente();
   }
 
-  createForm(){
+  createForm() {
     this.manterDataComemorativaForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'data': new FormControl('', Validators.required),
@@ -65,11 +70,16 @@ export class ManterDataComemoracaoComponent implements OnInit {
   }
 
   save() {
-    this.displayDialog = false;
-    this.dataComemorativaService.salvar(this.dataComemoracao).subscribe(resp => this.dataComemoracao = resp)
-    this.listar();
-
+    this.dataComemorativaService.salvar(this.dataComemoracao).subscribe(resp => {
+      this.dataComemoracao = resp;
+      this.displayDialog = false;
+      this.listar();
+      this.messageService.add({ key: 'msg', severity: 'success', summary: 'Tipo Comemoração', detail: "Operação efetuada com sucesso", life: 3000 });
+    }, (error) => {
+      this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+    });
   }
+
 
   delete() {
     this.displayDialog = false;
@@ -80,15 +90,15 @@ export class ManterDataComemoracaoComponent implements OnInit {
     this.displayDialog = true;
   }
 
-  listar(){
+  listar() {
     this.dataComemorativaService.listar().subscribe(datas => this.datas = datas);
   }
 
-  listarTipoComemoracao(){
+  listarTipoComemoracao() {
     this.tipoComemoracaoService.listarPorAtivo().subscribe(tipos => this.tipos = tipos)
   }
 
-  listarPessoasDeCliente(){
+  listarPessoasDeCliente() {
     this.dependenteService.listarPessoasDeCliente().subscribe(pessoa => this.pessoas = pessoa);
   }
 
