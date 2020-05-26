@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ClienteService } from '../shared/service/cliente.service';
 import { Cliente } from '../shared/cliente';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.css']
+  styleUrls: ['./cliente.component.css'],
+  providers: [MessageService]
 })
 export class ClienteComponent implements OnInit {
 
@@ -15,13 +17,13 @@ export class ClienteComponent implements OnInit {
 
   cliente: Cliente = new Cliente();
 
-  constructor(private clienteService: ClienteService, private fb: FormBuilder) { }
+  constructor(private clienteService: ClienteService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
     this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.clienteForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
@@ -31,6 +33,12 @@ export class ClienteComponent implements OnInit {
   }
 
   save() {
-    this.clienteService.salvar(this.cliente).subscribe(resp => this.cliente = resp)
+    this.clienteService.salvar(this.cliente).subscribe(resp => {
+      this.cliente = resp;
+      this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cliente', detail: "Operação efetuada com sucesso", life: 3000 });
+    }, (error) => {
+      this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+    });
   }
 }
+

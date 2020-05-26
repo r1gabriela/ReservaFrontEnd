@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario';
 import { UsuarioService } from "../shared/service/usuario.service";
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  styleUrls: ['./cadastro.component.css'],
+  providers: [MessageService]
 })
 export class CadastroComponent implements OnInit {
 
@@ -14,20 +18,29 @@ export class CadastroComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
     this.usuarioForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'senha': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])),
       'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
-      'login': new FormControl('',Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)]))
+      'login': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)]))
     });
   }
 
   cadastro() {
-    this.usuarioService.cadastrar(this.usuario).subscribe(usuario => this.usuario = usuario);
+    this.usuarioService.cadastrar(this.usuario).subscribe(usuario => {
+      this.usuario = usuario;
+      this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cadastro', detail: "Operação efetuada com sucesso", life: 3000 });
+    }, (error) => {
+      this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+    });
   }
 }
+
+
+
+
 
 
