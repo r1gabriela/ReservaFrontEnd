@@ -15,19 +15,19 @@ export class DataComemorativaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(dataComemorativa: DataComemorativa): Observable <DataComemorativa> {
+  salvar(dataComemorativa: DataComemorativa): Observable<DataComemorativa> {
     return this.httpClient.post<DataComemorativa>(this.SALVAR, dataComemorativa).pipe(catchError(this.handleError));
   }
 
-  listar(){
+  listar() {
     return this.httpClient.get<DataComemorativa[]>(this.LISTAR);
   }
 
-  excluir(dataComemorativa: DataComemorativa){
+  excluir(dataComemorativa: DataComemorativa) {
     return this.httpClient.post<Boolean>(this.EXCLUIR, dataComemorativa);
   }
 
-  handleError(error: HttpErrorResponse){
+  handleError(error: HttpErrorResponse) {
     return throwError(error.error);
   }
 

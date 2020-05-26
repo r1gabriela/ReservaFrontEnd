@@ -37,10 +37,5 @@ export class CadastroComponent implements OnInit {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
+
 }
-
-
-
-
-
-
