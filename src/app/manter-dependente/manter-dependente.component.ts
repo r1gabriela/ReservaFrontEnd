@@ -4,6 +4,7 @@ import { DependenteService } from '../shared/service/dependente.service';
 import { Validators,FormControl,FormGroup,FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
+
 @Component({
   selector: 'app-manter-dependente',
   templateUrl: './manter-dependente.component.html',
@@ -34,7 +35,7 @@ export class ManterDependenteComponent implements OnInit {
       { field: 'cpf', header: 'CPF' },
       { field: 'ativo', header: 'Ativo' }
     ];
-
+    this.listarDependentes();
     this.createForm();
   }
 
@@ -70,6 +71,10 @@ export class ManterDependenteComponent implements OnInit {
     this.displayDialog = true;
     this.dependente = event.data;
     this.newDependente = false;
+  }
+
+  listarDependentes(){
+    this.dependenteService.listarDependentes().subscribe(dependentes => this.dependentes = dependentes);
   }
 
 }

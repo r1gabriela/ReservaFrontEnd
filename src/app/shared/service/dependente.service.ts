@@ -13,6 +13,7 @@ export class DependenteService {
   private SALVAR = 'http://localhost:8080/restaurante/rest/dependente/salvar';
   private EXCLUIR = 'http://localhost:8080/restaurante/rest/dependente/excluir';
   private LISTARPESSOASDECLIENTE = 'http://localhost:8080/restaurante/rest/dependente/listarPessoasDeCliente';
+  private LISTARDEPENDENTES = 'http://localhost:8080/restaurante/rest/dependente/listarDependentes';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,6 +27,10 @@ export class DependenteService {
 
   listarPessoasDeCliente() {
     return this.httpClient.get<Pessoa[]>(this.LISTARPESSOASDECLIENTE);
+  }
+
+  listarDependentes(){
+    return this.httpClient.get<Dependente[]>(this.LISTARDEPENDENTES);
   }
 
   handleError(error: HttpErrorResponse){
