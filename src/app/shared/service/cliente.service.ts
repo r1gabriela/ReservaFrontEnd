@@ -12,17 +12,17 @@ export class ClienteService {
   private SALVAR = 'http://localhost:8080/restaurante/rest/cliente/salvar';
   private LISTAR = 'http://localhost:8080/restaurante/rest/cliente/listarTodos';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  salvar(cliente: Cliente): Observable<Cliente> { 
+  salvar(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.SALVAR, cliente).pipe(catchError(this.handleError));
   }
 
   listar() {
-    return this.http.get<Cliente[]>(this.LISTAR);  
+    return this.http.get<Cliente[]>(this.LISTAR);
   }
 
-  handleError(error: HttpErrorResponse){
+  handleError(error: HttpErrorResponse) {
     return throwError(error.error)
   }
 

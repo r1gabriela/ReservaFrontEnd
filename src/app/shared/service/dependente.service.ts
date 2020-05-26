@@ -21,7 +21,7 @@ export class DependenteService {
     return this.httpClient.post<Dependente>(this.SALVAR, dependente).pipe(catchError(this.handleError));
   }
 
-  excluir(dependente: Dependente){
+  excluir(dependente: Dependente) {
     return this.httpClient.post<Boolean>(this.EXCLUIR, dependente);
   }
 

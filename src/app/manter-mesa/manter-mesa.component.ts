@@ -1,7 +1,7 @@
 import { Mesa } from './../shared/mesa';
 import { Component, OnInit } from '@angular/core';
 import { MesaService } from '../shared/service/mesa.service';
-import {Validators,FormControl,FormGroup,FormBuilder, Form} from '@angular/forms';
+import { Validators, FormControl, FormGroup, FormBuilder, Form } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -26,11 +26,11 @@ export class ManterMesaComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private mesaService: MesaService, private fb: FormBuilder, private messageService: MessageService){
+  constructor(private mesaService: MesaService, private fb: FormBuilder, private messageService: MessageService) {
 
   }
 
-  createForm(){
+  createForm() {
     this.manterMesaForm = this.fb.group({
       'capacidade': new FormControl('', Validators.compose([Validators.required])),
       'localizacao': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
@@ -73,8 +73,8 @@ export class ManterMesaComponent implements OnInit {
     this.newMesa = false;
   }
 
-  listar(){
-   this.mesaService.listar().subscribe(mesas => this.mesas = mesas);
+  listar() {
+    this.mesaService.listar().subscribe(mesas => this.mesas = mesas);
   }
 
 }

@@ -20,7 +20,7 @@ export class TipoComemoracaoService {
     return this.httpClient.get<TipoComemoracao[]>(`${this.LISTARTODOS}`);
   }
 
-  salvar(tipo: TipoComemoracao): Observable<TipoComemoracao>{
+  salvar(tipo: TipoComemoracao): Observable<TipoComemoracao> {
     return this.httpClient.post<TipoComemoracao>(this.SALVAR, tipo).pipe(catchError(this.handleError));
   }
 

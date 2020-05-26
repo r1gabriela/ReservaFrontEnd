@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from '../shared/funcionario';
 import { FuncionarioService } from '../shared/service/funcionario.service'
-import {Validators,FormControl,FormGroup,FormBuilder} from '@angular/forms';
+import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { TipoFuncionario } from '../shared/tipoFuncionario';
 import { MessageService } from 'primeng/api';
 
@@ -9,7 +9,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-manter-funcionario',
   templateUrl: './manter-funcionario.component.html',
   styleUrls: ['./manter-funcionario.component.css'],
-  providers:[MessageService]
+  providers: [MessageService]
 })
 export class ManterFuncionarioComponent implements OnInit {
 
@@ -36,11 +36,11 @@ export class ManterFuncionarioComponent implements OnInit {
       { field: 'tipoFuncionario', header: 'Tipo' },
     ];
 
-  this.createForm();
-  this.listarTodos();
+    this.createForm();
+    this.listarTodos();
   }
 
-  createForm(){
+  createForm() {
     this.manterFuncionarioForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'cpf': new FormControl('', Validators.compose([Validators.required])),
@@ -64,18 +64,18 @@ export class ManterFuncionarioComponent implements OnInit {
     this.newFuncionario = false;
   }
 
-  salvar(){
+  salvar() {
     this.displayDialog = false;
-    this.funcionarioService.salvar(this.funcionario).subscribe(funcionario =>{
-      this.funcionario = funcionario; 
+    this.funcionarioService.salvar(this.funcionario).subscribe(funcionario => {
+      this.funcionario = funcionario;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Funcionario', detail: "Operação efetuada com sucesso", life: 3000 });
       this.listarTodos();
     }, (error) => {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
-    }); 
+    });
   }
 
-  listarTodos(){
+  listarTodos() {
     this.funcionarioService.listarTodos().subscribe(resp => this.funcionarios = resp);
   }
 

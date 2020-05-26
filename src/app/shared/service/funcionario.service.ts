@@ -14,15 +14,15 @@ export class FuncionarioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(funcionario: Funcionario): Observable<Funcionario>{
+  salvar(funcionario: Funcionario): Observable<Funcionario> {
     return this.httpClient.post<Funcionario>(this.SALVAR, funcionario).pipe(catchError(this.handleError));
   }
 
-  listarTodos(){
+  listarTodos() {
     return this.httpClient.get<Funcionario[]>(this.LISTARTODOS);
   }
 
-  handleError(error:HttpErrorResponse){
+  handleError(error: HttpErrorResponse) {
     return throwError(error.error);
   }
 

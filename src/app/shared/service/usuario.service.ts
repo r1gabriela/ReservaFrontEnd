@@ -21,23 +21,23 @@ export class UsuarioService {
     return this.httpClient.post<Usuario>(this.CADASTRO, usuario);
   }
 
-  logar(usuario: Usuario){
+  logar(usuario: Usuario) {
     return this.httpClient.post<Usuario>(this.LOGAR, usuario);
   }
 
-  listarTodos(){
+  listarTodos() {
     return this.httpClient.get<Usuario[]>(this.LISTARTODOS);
   }
 
-  excluir(usuario: Usuario){
+  excluir(usuario: Usuario) {
     return this.httpClient.post<Boolean>(this.EXCLUIR, usuario);
   }
 
-  salvar(usuario: Usuario): Observable<Usuario>{
+  salvar(usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(this.SALVAR, usuario).pipe(catchError(this.handleError));
   }
 
-  handleError(error: HttpErrorResponse){
+  handleError(error: HttpErrorResponse) {
     return throwError(error.error);
   }
 }

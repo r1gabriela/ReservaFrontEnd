@@ -37,7 +37,6 @@ export class ManterClienteComponent implements OnInit {
     ];
 
     this.createForm();
-
     this.listarTodos();
   }
 
@@ -78,4 +77,5 @@ export class ManterClienteComponent implements OnInit {
   listarTodos() {
     this.clienteService.listar().subscribe(resp => this.clientes = resp);
   }
+
 }

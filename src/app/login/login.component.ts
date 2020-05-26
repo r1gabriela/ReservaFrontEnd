@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logar(){
+  logar() {
     this.usuarioService.logar(this.usuario).subscribe(usuario => this.usuario = usuario);
   }
 
