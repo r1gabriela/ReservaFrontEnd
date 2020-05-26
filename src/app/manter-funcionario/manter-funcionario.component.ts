@@ -60,6 +60,8 @@ export class ManterFuncionarioComponent implements OnInit {
 
   onRowSelect(event) {
     this.displayDialog = true;
+    this.funcionario = event.data;
+    this.newFuncionario = false;
   }
 
   salvar(){
