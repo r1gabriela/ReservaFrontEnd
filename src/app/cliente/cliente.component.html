@@ -6,6 +6,7 @@
           <header><strong>Cadastro Cliente</strong></header>
         </div>
         <div class="ui-g-10 ui-g-offset-1 boxForm">
+        <p-toast position="top-right" key="msg"></p-toast>
           <form [formGroup]="clienteForm">
             <div class="ui-g ui-fluid">
               <div class="ui-g-6">
@@ -17,8 +18,7 @@
               </div>
               <div class="ui-g-6">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.cpf" formControlName="cpf" name="cpf" id="cpf" type="text"
-                    pInputText>
+                  <p-inputMask mask="999.999.999-99" [(ngModel)]="cliente.cpf" formControlName="cpf" name="cpf" id="cpf" type="text"></p-inputMask>
                   <label for="cpf">CPF: *</label>
                 </span>
               </div>

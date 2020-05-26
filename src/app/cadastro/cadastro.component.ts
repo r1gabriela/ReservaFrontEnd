@@ -24,7 +24,7 @@ export class CadastroComponent implements OnInit {
     this.usuarioForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'senha': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])),
-      'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
+      'cpf': new FormControl('', Validators.compose([Validators.required])),
       'login': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)]))
     });
   }

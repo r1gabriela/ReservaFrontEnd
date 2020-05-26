@@ -44,7 +44,7 @@ export class ManterClienteComponent implements OnInit {
   createForm() {
     this.manterClienteForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
-      'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
+      'cpf': new FormControl('', Validators.compose([Validators.required])),
       'email': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255), Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)])),
       'telefone': new FormControl('', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^\d{11}$/)]))
     });

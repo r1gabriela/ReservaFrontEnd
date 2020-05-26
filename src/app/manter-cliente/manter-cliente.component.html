@@ -48,8 +48,7 @@
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <input [(ngModel)]="cliente.cpf" formControlName="cpf" name="cpf" id="cpf" type="text"
-                      pInputText>
+                    <p-inputMask mask="999.999.999-99" [(ngModel)]="cliente.cpf" formControlName="cpf" name="cpf" id="cpf" type="text"></p-inputMask>
                     <label for="cpf">CPF: *</label>
                   </span>
                 </div>

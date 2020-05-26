@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
+import {InputMaskModule} from 'primeng/inputmask';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -64,7 +65,8 @@ import { ClienteComponent } from './cliente/cliente.component';
     TieredMenuModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    InputMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
