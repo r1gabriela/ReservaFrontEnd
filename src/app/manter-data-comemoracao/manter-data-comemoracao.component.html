@@ -33,32 +33,34 @@
             </ng-template>
           </p-table>
 
-          <p-dialog header="Detalhes Data Comemoração" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
-            showEffect="fade" [modal]="true" [style]="{width: '500px'}">
+          <p-toast position="top-right" key="msg"></p-toast>
+
+          <p-dialog header="Detalhes Data Comemoração" [(visible)]="displayDialog" [focusOnShow]="false"
+            [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <form [formGroup]="manterDataComemorativaForm">
               <div class="ui-g ui-fluid" *ngIf="dataComemoracao">
                 <div class="ui-g-12">
-                  <p-autoComplete formControlName="nome" [(ngModel)]="dataComemoracao.pessoa.idPessoa" field="name" placeholder="Nome: *" [minLength]="3"
-                    size="250"></p-autoComplete>
+                  <p-dropdown selectId optionLabel="nome" [options]="pessoas" formControlName="nome"
+                    [(ngModel)]="dataComemoracao.pessoa" filter="true" placeholder="Nome: *"></p-dropdown>
                 </div>
                 <div class="ui-g-12">
-                  <p-calendar formControlName="data" name="dataComemoracao" [(ngModel)]="dataComemoracao.dataComemoracao" placeholder="Data: *">
+                  <p-calendar formControlName="data" name="dataComemoracao"
+                    [(ngModel)]="dataComemoracao.dataComemoracao" placeholder="Data: *">
                   </p-calendar>
                 </div>
                 <div class="ui-g-12">
-                  <p-dropdown formControlName="tipoDeComemoracao" [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true"
-                    placeholder="Tipo Comemoração: *">
-                    <ng-template let-item pTemplate="selectedItem">
-                      <span style="vertical-align:middle; margin-left: .5em"></span>
-                    </ng-template>
+                  <p-dropdown selectId optionLabel="descricao" [options]="tipos" formControlName="tipoComemoracao"
+                    [(ngModel)]="dataComemoracao.tipoComemoracao" filter="true" placeholder="Tipo Comemoração: *">
                   </p-dropdown>
                 </div>
               </div>
             </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-times" [disabled]="!manterDataComemorativaForm.valid" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="pi pi-check" [disabled]="!manterDataComemorativaForm.valid" (click)="save()" label="Save"></button>
+                <button type="button" pButton icon="pi pi-times" [disabled]="!manterDataComemorativaForm.valid"
+                  (click)="delete()" label="Delete"></button>
+                <button type="button" pButton icon="pi pi-check" [disabled]="!manterDataComemorativaForm.valid"
+                  (click)="save()" label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>

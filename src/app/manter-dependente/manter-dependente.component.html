@@ -33,22 +33,28 @@
             </ng-template>
           </p-table>
 
+          <p-toast position="top-right" key="msg"></p-toast>
+
           <p-dialog header="Detalhes Dependente" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <form [formGroup]="manterDependenteForm">
               <div class="ui-g ui-fluid" *ngIf="dependente">
                 <div class="ui-g-12">
-                  <input type="text" formControlName="nome" pInputText [(ngModel)]="dependente.nome" field="nome" placeholder="Nome: *" size="250">
+                  <input type="text" formControlName="nome" pInputText [(ngModel)]="dependente.nome" field="nome"
+                    placeholder="Nome: *" size="250">
                 </div>
                 <div class="ui-g-12">
-                  <input type="text" formControlName="cpf" pInputText name="cpf" [(ngModel)]="dependente.cpf" placeholder="CPF: *">
+                  <input type="text" formControlName="cpf" pInputText name="cpf" [(ngModel)]="dependente.cpf"
+                    placeholder="CPF: *">
                 </div>
               </div>
             </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-times" [disabled]="!manterDependenteForm.valid" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="pi pi-check" [disabled]="!manterDependenteForm.valid" (click)="save()" label="Save"></button>
+                <button type="button" pButton icon="pi pi-times" [disabled]="!manterDependenteForm.valid"
+                  (click)="delete()" label="Delete"></button>
+                <button type="button" pButton icon="pi pi-check" [disabled]="!manterDependenteForm.valid"
+                  (click)="save()" label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>
@@ -57,4 +63,3 @@
     </div>
   </div>
 </div>
-

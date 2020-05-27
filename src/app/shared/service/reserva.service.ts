@@ -12,11 +12,11 @@ export class ReservaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(reserva: Reserva){
+  salvar(reserva: Reserva) {
     return this.httpClient.post<Reserva>(this.SALVAR, reserva);
   }
 
-  excluir(reserva: Reserva){
+  excluir(reserva: Reserva) {
     return this.httpClient.post<Boolean>(this.EXCLUIR, reserva);
   }
 }

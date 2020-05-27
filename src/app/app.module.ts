@@ -1,18 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CalendarModule} from 'primeng/calendar';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-import {DropdownModule} from 'primeng/dropdown';
-import {TableModule} from 'primeng/table';
-import {DialogModule} from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +30,7 @@ import { ManterClienteComponent } from './manter-cliente/manter-cliente.componen
 import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
 import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { AuthService } from './shared/service/auth.service';
 
 
 @NgModule({
@@ -58,10 +63,13 @@ import { ClienteComponent } from './cliente/cliente.component';
     DropdownModule,
     TableModule,
     DialogModule,
-    FormsModule,
-    TieredMenuModule
+    TieredMenuModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
+    InputMaskModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,12 +14,14 @@
           </div>
           <div class="senha">
             <span class="ui-float-label">
-              <input [(ngModel)]="usuario.senha" name="senha" formControlName="senha" id="senha" type="password" size="40%" pInputText>
+              <input [(ngModel)]="usuario.senha" name="senha" formControlName="senha" id="senha" type="password"
+                size="40%" pInputText>
               <label for="senha">Senha: *</label>
             </span>
           </div>
         </div>
-        <button class="botaologin" pButton type="button" label="Login" [disabled]="!loginForm.valid" (click)="logar()"></button>
+        <button class="botaologin" pButton type="button" label="Login" [disabled]="!loginForm.valid"
+          (click)="logar()"></button>
         <h3><a href="/cadastro">Cadastre-se</a></h3>
       </form>
     </div>

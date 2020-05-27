@@ -28,19 +28,23 @@
             </ng-template>
           </p-table>
 
+          <p-toast position="top-right" key="msg"></p-toast>
+
           <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <form [formGroup]="manterUsuarioForm">
               <div class="ui-g ui-fluid" *ngIf="usuario">
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <input  formControlName="login" [(ngModel)]="usuario.login" name="login" id="login" type="text" pInputText>
+                    <input formControlName="login" [(ngModel)]="usuario.login" name="login" id="login" type="text"
+                      pInputText>
                     <label for="login">Login: *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <input  formControlName="senha" [(ngModel)]="usuario.senha" name="senha" id="senha" type="password" pInputText>
+                    <input formControlName="senha" [(ngModel)]="usuario.senha" name="senha" id="senha" type="password"
+                      pInputText>
                     <label for="senha">Senha: *</label>
                   </span>
                 </div>
@@ -48,8 +52,10 @@
             </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button [disabled]="!manterUsuarioForm.valid" type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-                <button [disabled]="!manterUsuarioForm.valid" type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                <button [disabled]="!manterUsuarioForm.valid" type="button" pButton icon="pi pi-times"
+                  (click)="delete()" label="Delete"></button>
+                <button [disabled]="!manterUsuarioForm.valid" type="button" pButton icon="pi pi-check" (click)="save()"
+                  label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>
@@ -58,4 +64,3 @@
     </div>
   </div>
 </div>
-

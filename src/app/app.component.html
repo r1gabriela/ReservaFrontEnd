@@ -1,5 +1,5 @@
 <div class="p-grid" *ngIf="!isMobileMenu()">
-  <div class="p-col-2 painel">
+  <div *ngIf="mostrarMenu" class="p-col-2 painel">
     <app-menu></app-menu>
   </div>
   <div class="p-col-10 painel">
@@ -15,7 +15,7 @@
 </div>
 
 <div class="p-grid" *ngIf="isMobileMenu()">
-  <div class="p-col-1 p-col-offset-11" style="height: 6% !important;">
+  <div *ngIf="mostrarMenu" class="p-col-1 p-col-offset-11" style="height: 6% !important;">
     <app-menu></app-menu>
   </div>
   <div class="p-col-12 painel-cel">

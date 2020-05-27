@@ -33,24 +33,28 @@
             </ng-template>
           </p-table>
 
+          <p-toast position="top-right" key="msg"></p-toast>
+
           <p-dialog header="Detalhes Funcionario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <form [formGroup]="manterFuncionarioForm">
               <div class="ui-g ui-fluid" *ngIf="funcionario">
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <input [(ngModel)]="funcionario.nome" formControlName="nome" name="nome" id="nome" type="text" pInputText>
+                    <input [(ngModel)]="funcionario.nome" formControlName="nome" name="nome" id="nome" type="text"
+                      pInputText>
                     <label for="nome">Nome: *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <input [(ngModel)]="funcionario.cpf" formControlName="cpf" name="cpf" id="cpf" type="text" pInputText>
+                    <p-inputMask mask="999.999.999-99" [(ngModel)]="funcionario.cpf" formControlName="cpf" name="cpf" id="cpf" type="text" ></p-inputMask>
                     <label for="cpf">CPF: *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
-                  <p-dropdown [(ngModel)]="funcionario.tipoFuncionario" formControlName="tipo" filter="false" placeholder="Tipo Funcionário: *">
+                  <p-dropdown [(ngModel)]="funcionario.tipoFuncionario" formControlName="tipo" filter="false"
+                    placeholder="Tipo Funcionário: *">
                     <ng-template let-item pTemplate="selectedItem">
                       <span style="vertical-align:middle; margin-left: .5em"></span>
                     </ng-template>
@@ -60,7 +64,8 @@
             </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-check" [disabled]="!manterFuncionarioForm.valid" (click)="salvar()" label="Save"></button>
+                <button type="button" pButton icon="pi pi-check" [disabled]="!manterFuncionarioForm.valid"
+                  (click)="salvar()" label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>
