@@ -1,47 +1,30 @@
-import { Cliente } from '../shared/cliente';
 import { Component, OnInit } from '@angular/core';
-import { ClienteService } from '../shared/service/cliente.service';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { ClienteService } from '../shared/service/cliente.service';
+import { Cliente } from '../shared/cliente';
 import { MessageService } from 'primeng/api';
 
+
 @Component({
-  selector: 'app-manter-cliente',
-  templateUrl: './manter-cliente.component.html',
-  styleUrls: ['./manter-cliente.component.css'],
-  providers: [MessageService],
+  selector: 'app-cliente',
+  templateUrl: './cliente.component.html',
+  styleUrls: ['./cliente.component.css'],
+  providers: [MessageService]
 })
-export class ManterClienteComponent implements OnInit {
+export class ClienteComponent implements OnInit {
 
-  manterClienteForm: FormGroup;
+  clienteForm: FormGroup;
 
-  displayDialog: boolean;
-
-  selectedCliente: Cliente;
-
-  cliente: Cliente;
-
-  newCliente: boolean;
-
-  clientes: Cliente[];
-
-  cols: any[];
+  cliente: Cliente = new Cliente();
 
   constructor(private clienteService: ClienteService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
-    this.cols = [
-      { field: 'nome', header: 'Nome' },
-      { field: 'cpf', header: 'CPF' },
-      { field: 'telefone', header: 'Telefone' },
-      { field: 'email', header: 'Email' }
-    ];
-
     this.createForm();
-    this.listarTodos();
   }
 
   createForm() {
-    this.manterClienteForm = this.fb.group({
+    this.clienteForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'cpf': new FormControl('', Validators.compose([Validators.required])),
       'email': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255), Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)])),
@@ -49,33 +32,13 @@ export class ManterClienteComponent implements OnInit {
     });
   }
 
-  showDialogToAdd() {
-    this.newCliente = true;
-    this.displayDialog = true;
-    this.cliente = new Cliente();
-  }
-
   save() {
     this.clienteService.salvar(this.cliente).subscribe(resp => {
       this.cliente = resp;
-      this.displayDialog = false;
-      this.listarTodos();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cliente', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
-  }
-
-  delete() {
-    this.displayDialog = false;
-  }
-
-  onRowSelect(event) {
-    this.displayDialog = true;
-  }
-
-  listarTodos() {
-    this.clienteService.listar().subscribe(resp => this.clientes = resp);
   }
 
 }

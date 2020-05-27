@@ -1,27 +1,27 @@
-.caixa{
+.caixa {
   height: 100%;
-  background-color: rgb(25,25,25);
+  background-color: rgb(25, 25, 25);
   padding-top: 10px;
 }
 
-img{
+img {
   width: 15%;
   height: 15%;
 }
 
-.conteudo{
+.conteudo {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.texto{
+.texto {
   float: left;
   color: white;
   font-family: sans-serif;
 }
 
-.caixa .barra{
+.caixa .barra {
   opacity: 0.3;
   width: 90%;
   height: 1px;

@@ -1,0 +1,51 @@
+<div class="ui-fluid tamanho-fluid">
+  <div class="ui-g-fluid caixaInterface">
+    <div class="ui-g-fluid">
+      <div class="ui-g">
+        <div class="ui-g-10 ui-g-offset-1 barrasuperior">
+          <header><strong>Cadastro Cliente</strong></header>
+        </div>
+        <div class="ui-g-10 ui-g-offset-1 boxForm">
+          <p-toast position="top-right" key="msg"></p-toast>
+          <form [formGroup]="clienteForm">
+            <div class="ui-g ui-fluid">
+              <div class="ui-g-6">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="cliente.nome" formControlName="nome" name="nome" id="nome" type="text" pInputText>
+                  <label for="nome">Nome Completo: *</label>
+                </span>
+              </div>
+              <div class="ui-g-6">
+                <span class="ui-float-label">
+                  <p-inputMask mask="999.999.999-99" [(ngModel)]="cliente.cpf" formControlName="cpf" name="cpf" id="cpf"
+                    type="text"></p-inputMask>
+                  <label for="cpf">CPF: *</label>
+                </span>
+              </div>
+              <div class="ui-g-6">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="cliente.telefone" formControlName="telefone" name="telefone" id="telefone"
+                    type="text" pInputText>
+                  <label for="telefone">Telefone: *</label>
+                </span>
+              </div>
+              <div class="ui-g-6">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="cliente.email" name="email" formControlName="email" id="email" type="email"
+                    pInputText>
+                  <label for="email">Email: *</label>
+                </span>
+              </div>
+            </div>
+          </form>
+          <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix ui-g-6 p-col-offset">
+              <button type="button" pButton icon="pi pi-check" [disabled]="!clienteForm.valid" (click)="save()"
+                label="Save"></button>
+            </div>
+          </p-footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

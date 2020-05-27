@@ -1,6 +1,6 @@
-export class Funcionario {
-  idPessoa: number = 0;
-  nome: string = "";
-  cpf: string = "";
-  idTipoFuncionario: number = 0;
+import { Pessoa } from './pessoa';
+import { TipoFuncionario } from './tipoFuncionario';
+
+export class Funcionario extends Pessoa {
+  tipoFuncionario: TipoFuncionario;
 }

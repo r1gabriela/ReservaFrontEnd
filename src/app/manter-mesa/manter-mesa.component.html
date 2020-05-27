@@ -1,4 +1,4 @@
-<div class="ui-fluid">
+<div class="ui-fluid tamanho-fluid">
   <div class="ui-g-fluid caixaInterface">
     <div class="ui-g-fluid">
       <div class="ui-g">
@@ -35,24 +35,30 @@
 
           <p-dialog header="Detalhes Mesa" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="mesa">
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="mesa.capacidade" name="capacidade" id="capacidade" type="number" min="1" pInputText>
-                  <label for="capacidade">Capacidade</label>
-                </span>
+            <form [formGroup]="manterMesaForm">
+              <div class="ui-g ui-fluid" *ngIf="mesa">
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input formControlName="capacidade" [(ngModel)]="mesa.capacidade" name="capacidade" id="capacidade"
+                      type="number" min="1" pInputText>
+                    <label for="capacidade">Capacidade: *</label>
+                  </span>
+                </div>
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input formControlName="localizacao" [(ngModel)]="mesa.localizacao" name="localizacao"
+                      id="localizacao" type="text" pInputText>
+                    <label for="localizacao">Localização: *</label>
+                  </span>
+                </div>
               </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="mesa.localizacao" name="localizacao" id="localizacao" type="text" pInputText>
-                  <label for="localizacao">Localização</label>
-                </span>
-              </div>
-            </div>
+            </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                <button [disabled]="!manterMesaForm.valid" type="button" pButton icon="pi pi-times" (click)="delete()"
+                  label="Delete"></button>
+                <button [disabled]="!manterMesaForm.valid" type="button" pButton icon="pi pi-check" (click)="save()"
+                  label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>

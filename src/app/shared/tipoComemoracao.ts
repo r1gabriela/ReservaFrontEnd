@@ -1,6 +1,5 @@
 export class TipoComemoracao {
-    idTipoComemoracao: number = 0;
-    descricao: string = "";
-    ativo: boolean = true;
-    
+  idTipoComemoracao: number = 0;
+  descricao: string = "";
+  ativo: Boolean = true;
 }

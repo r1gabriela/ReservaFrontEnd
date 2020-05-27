@@ -1,18 +1,14 @@
-*{
+* {
   padding: 0%;
   margin: 0%;
 }
 
-.espacamento{
+.espacamento {
   padding: 3%;
-  height: 92%;
+  height: 94%;
 }
 
-/* div {
-  height: 100% !important;
-} */
-
-.footerApp p{
+.footerApp p {
   color: white;
   text-align: right;
   background: none;
@@ -21,24 +17,29 @@
   font-family: sans-serif;
 }
 
-.footerApp{
-  height: 8% !important;
+.footerApp {
+  height: 6% !important;
   padding-right: 1%;
+  width: 100% !important;
 }
 
-.painel{
+.painel {
   height: 100% !important;
 }
 
-.p-grid{
+.painel-cel {
+  height: 88% !important;
+}
+
+.p-grid {
   height: 100%;
 }
 
-a{
+a {
   text-decoration: none;
   color: white;
 }
 
-.footerApp a:hover{
+.footerApp a:hover {
   color: #3498db;
 }

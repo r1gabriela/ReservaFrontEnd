@@ -1,3 +1,4 @@
+import { ClienteComponent } from './cliente/cliente.component';
 import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 import { ManterMesaComponent } from './manter-mesa/manter-mesa.component';
 import { ModuleWithProviders, Component } from '@angular/core';
@@ -47,7 +48,11 @@ const APP_ROUTES: Routes = [
   {
     path: 'usuario/manter',
     component: ManterUsuarioComponent
-  }
+  },
+  {
+    path: 'cliente/cadastro',
+    component: ClienteComponent
+  },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

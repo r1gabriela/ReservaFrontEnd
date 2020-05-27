@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Mesa } from '../mesa';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +13,15 @@ export class MesaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  salvar(mesa: Mesa){
+  salvar(mesa: Mesa) {
     return this.httpClient.post<Mesa>(this.SALVAR, mesa);
   }
 
-  listar(){
+  listar() {
     return this.httpClient.get<Mesa[]>(this.LISTAR);
   }
 
-  excluir(mesa: Mesa){
+  excluir(mesa: Mesa) {
     return this.httpClient.post<Boolean>(this.EXCLUIR, mesa);
   }
-
 }
