@@ -3,6 +3,7 @@ import { Usuario } from '../usuario';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,14 @@ export class UsuarioService {
   private EXCLUIR = 'http://localhost:8080/restaurante/rest/usuario/excluir';
   private SALVAR = 'http://localhost:8080/restaurante/rest/usuario/salvar';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
   cadastrar(usuario: Usuario) {
     return this.httpClient.post<Usuario>(this.CADASTRO, usuario);
   }
 
-  logar(usuario: Usuario) {
+  logar(usuario: Usuario){
+    this.authService.mostrarMenu();
     return this.httpClient.post<Usuario>(this.LOGAR, usuario);
   }
 

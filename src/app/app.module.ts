@@ -30,6 +30,7 @@ import { ManterClienteComponent } from './manter-cliente/manter-cliente.componen
 import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
 import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { AuthService } from './shared/service/auth.service';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { ClienteComponent } from './cliente/cliente.component';
     ToastModule,
     InputMaskModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

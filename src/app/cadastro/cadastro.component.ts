@@ -5,6 +5,7 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,7 +19,7 @@ export class CadastroComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService, private router: Router) { }
 
   ngOnInit() {
     this.usuarioForm = this.fb.group({
@@ -33,6 +34,7 @@ export class CadastroComponent implements OnInit {
     this.usuarioService.cadastrar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cadastro', detail: "Operação efetuada com sucesso", life: 3000 });
+      this.router.navigate[('cliente/cadastro/')]
     }, (error) => {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario';
 import { UsuarioService } from '../shared/service/usuario.service'
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from '../shared/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
