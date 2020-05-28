@@ -1,3 +1,4 @@
+import { Role } from './../shared/role';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../shared/service/usuario.service';
 import { Usuario } from '../shared/usuario';
@@ -24,11 +25,20 @@ export class ManterUsuarioComponent implements OnInit {
 
   usuarios: Usuario[];
 
+  roles: Role[];
+
   cols: any[];
 
   constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.cols = [
+      { field: 'pessoa.nome', header: 'Nome' },
+      { field: 'pessoa.cpf', header: 'CPF' },
+      { field: 'login', header: 'Login' },
+      { field: 'role.nome', header: 'Role' },
+      { field: 'ativo', header: 'Ativo' },
+    ];
     this.listarTodos();
     this.createForm();
   }
@@ -42,7 +52,8 @@ export class ManterUsuarioComponent implements OnInit {
   createForm() {
     this.manterUsuarioForm = this.fb.group({
       'senha': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])),
-      'login': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)]))
+      'login': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)])),
+      'role': new FormControl('', Validators.compose([Validators.required])),
     });
   }
 
