@@ -26,10 +26,13 @@
                 </td>
               </tr>
             </ng-template>
+            <ng-template pTemplate="summary" let-rowData>
+              <div class="ui-xl-2 ui-lg-2 ui-g-6 ui-md-3" style="text-align:left">
+                <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+              </div>
+            </ng-template>
           </p-table>
-
           <p-toast position="top-right" key="msg"></p-toast>
-
           <p-dialog header="Detalhes Usuario" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
             <form [formGroup]="manterUsuarioForm">
@@ -48,7 +51,11 @@
                     <label for="senha">Senha: *</label>
                   </span>
                 </div>
+                <div class="ui-g-12">
+                <p-dropdown selectId optionLabel="nome" [options]="roles" formControlName="role"
+                    [(ngModel)]="usuario.role" filter="true" placeholder="Role: *"></p-dropdown>
               </div>
+            </div>
             </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
