@@ -1,11 +1,10 @@
-*{
+* {
   padding: 0;
 }
 
-.box{
- position: fixed;
+.box {
+  position: fixed;
   padding: 3%;
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -15,7 +14,7 @@
   border: 2px solid #3498db;
 }
 
-h1{
+h1 {
   color: white;
   text-transform: uppercase;
   font-weight: 500;
@@ -23,27 +22,27 @@ h1{
   text-align: center;
 }
 
-img{
+img {
   position: fixed;
   width: 100%;
   height: 100%;
   filter: blur(3px);
 }
 
-.botaologin{
+.botaologin {
   margin-top: 10%;
   width: 50%;
   text-align: center;
 }
 
-h3{
+h3 {
   margin-top: 20px;
   font-family: Arial;
   color: azure;
   font-size: medium;
 }
 
-.icone{
+.icone {
   filter: blur(0px);
   border-radius: 50%;
   background-color: black;
@@ -54,6 +53,6 @@ h3{
   border: 2px solid #3498db;
 }
 
-.senha{
+.senha {
   margin-top: 10px;
 }

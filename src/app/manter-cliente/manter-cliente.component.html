@@ -33,37 +33,46 @@
             </ng-template>
           </p-table>
 
+          <p-toast position="top-right" key="msg"></p-toast>
+
           <p-dialog header="Detalhes Cliente" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true"
             showEffect="fade" [modal]="true" [style]="{width: '500px'}">
-            <div class="ui-g ui-fluid" *ngIf="cliente">
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.nome" name="nome" id="nome" type="text" pInputText>
-                  <label for="nome">Nome</label>
-                </span>
+            <form [formGroup]="manterClienteForm">
+              <div class="ui-g ui-fluid" *ngIf="cliente">
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input [(ngModel)]="cliente.nome" formControlName="nome" name="nome" id="nome" type="text"
+                      pInputText>
+                    <label for="nome">Nome: *</label>
+                  </span>
+                </div>
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <p-inputMask mask="999.999.999-99" [(ngModel)]="cliente.cpf" formControlName="cpf" name="cpf"
+                      id="cpf" type="text"></p-inputMask>
+                    <label for="cpf">CPF: *</label>
+                  </span>
+                </div>
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input [(ngModel)]="cliente.telefone" formControlName="telefone" name="telefone" id="telefone"
+                      type="text" pInputText>
+                    <label for="telefone">Telefone: *</label>
+                  </span>
+                </div>
+                <div class="ui-g-12">
+                  <span class="ui-float-label">
+                    <input [(ngModel)]="cliente.email" name="email" formControlName="email" id="email" type="email"
+                      pInputText>
+                    <label for="email">Email: *</label>
+                  </span>
+                </div>
               </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.cpf" name="cpf" id="cpf" type="text" pInputText>
-                  <label for="cpf">CPF</label>
-                </span>
-              </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.telefone" name="telefone" id="telefone" type="text" pInputText>
-                  <label for="telefone">Telefone</label>
-                </span>
-              </div>
-              <div class="ui-g-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="cliente.email" name="email" id="email" type="email" pInputText>
-                  <label for="email">Email</label>
-                </span>
-              </div>
-            </div>
+            </form>
             <p-footer>
               <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
+                <button type="button" pButton icon="pi pi-check" [disabled]="!manterClienteForm.valid" (click)="save()"
+                  label="Save"></button>
               </div>
             </p-footer>
           </p-dialog>

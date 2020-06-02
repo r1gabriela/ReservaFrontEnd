@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { Message } from 'primeng/api';
+
 import { TipoComemoracao } from '../shared/tipoComemoracao';
+import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 import { TipoComemoracaoService } from '../shared/service/tipo-comemoracao.service';
 
 @Component({
   selector: 'app-manter-tipo-comemoracao',
   templateUrl: './manter-tipo-comemoracao.component.html',
-  styleUrls: ['./manter-tipo-comemoracao.component.css']
+  styleUrls: ['./manter-tipo-comemoracao.component.css'],
+  providers: [MessageService],
 })
 export class ManterTipoComemoracaoComponent implements OnInit {
+
+  manterTipoComemoracaoForm: FormGroup;
 
   displayDialog: boolean;
 
@@ -22,7 +29,7 @@ export class ManterTipoComemoracaoComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private tipoComemoracaoService: TipoComemoracaoService){ }
+  constructor(private tipoComemoracaoService: TipoComemoracaoService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
     this.cols = [
@@ -30,6 +37,14 @@ export class ManterTipoComemoracaoComponent implements OnInit {
       { field: 'ativo', header: 'Ativo' }
     ];
     this.listarTodos();
+
+    this.createForm();
+  }
+
+  createForm() {
+    this.manterTipoComemoracaoForm = this.fb.group({
+      'descricao': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
+    });
   }
 
   showDialogToAdd() {
@@ -39,9 +54,14 @@ export class ManterTipoComemoracaoComponent implements OnInit {
   }
 
   save() {
-    this.displayDialog = false;
-    this.tipoComemoracaoService.salvar(this.tipo).subscribe(resp=> this.tipo = resp);
-    this.listarTodos();
+    this.tipoComemoracaoService.salvar(this.tipo).subscribe(resp => {
+      this.tipo = resp;
+      this.displayDialog = false;
+      this.listarTodos();
+      this.messageService.add({ key: 'msg', severity: 'success', summary: 'Tipo Comemoração', detail: "Operação efetuada com sucesso", life: 3000 });
+    }, (error) => {
+      this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
+    });
   }
 
   delete() {
@@ -56,15 +76,8 @@ export class ManterTipoComemoracaoComponent implements OnInit {
     this.displayDialog = true;
   }
 
-
-  listarTodos(){
-
-   this.tipoComemoracaoService.listarTodos().subscribe(tipos =>this.tipos = tipos);
-
+  listarTodos() {
+    this.tipoComemoracaoService.listarTodos().subscribe(tipos => this.tipos = tipos);
   }
-
-  //save(){
-  //  this.salvar();
- // }
 
 }

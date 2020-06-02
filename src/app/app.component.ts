@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './shared/service/auth.service';
 
 declare const $: any;
 
@@ -10,11 +11,24 @@ declare const $: any;
 export class AppComponent {
   title = 'Smart Booking';
 
+  mostrarMenu: boolean = false;
+
   isMobileMenu() {
     if ($(window).width() > 995) {
       return false;
     }
     return true;
   };
+
+  constructor(private authService: AuthService){}
+
+  ngOnInit(){
+  }
+
+  mostrarMenuApp(){
+    this.authService.mostrarMenuEmitter.subscribe(
+      mostrar => this.mostrarMenu = mostrar
+    );
+  }
 
 }

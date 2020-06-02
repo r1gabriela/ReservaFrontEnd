@@ -1,14 +1,14 @@
-*{
+* {
   padding: 0%;
   margin: 0%;
 }
 
-.espacamento{
+.espacamento {
   padding: 3%;
   height: 94%;
 }
 
-.footerApp p{
+.footerApp p {
   color: white;
   text-align: right;
   background: none;
@@ -17,29 +17,29 @@
   font-family: sans-serif;
 }
 
-.footerApp{
+.footerApp {
   height: 6% !important;
   padding-right: 1%;
   width: 100% !important;
 }
 
-.painel{
+.painel {
   height: 100% !important;
 }
 
-.painel-cel{
+.painel-cel {
   height: 88% !important;
 }
 
-.p-grid{
+.p-grid {
   height: 100%;
 }
 
-a{
+a {
   text-decoration: none;
   color: white;
 }
 
-.footerApp a:hover{
+.footerApp a:hover {
   color: #3498db;
 }

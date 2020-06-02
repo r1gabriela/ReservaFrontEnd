@@ -1,4 +1,4 @@
-<div class="p-grid" *ngIf="!isMobileMenu()">
+<div class="p-grid" *ngIf="!isMobileMenu() && mostrarMenuApp()">
   <div class="p-col-2 painel">
     <app-menu></app-menu>
   </div>
@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="p-grid" *ngIf="isMobileMenu()">
+<div class="p-grid" *ngIf="isMobileMenu() && mostrarMenuApp()">
   <div class="p-col-1 p-col-offset-11" style="height: 6% !important;">
     <app-menu></app-menu>
   </div>
@@ -24,6 +24,19 @@
   <div class="p-grid p-align-end footerApp">
     <div class="p-col" style="height: 50%">
       <p>© 2020 Desenvolvido por: <a href="#"><strong>UNA Developers</strong></a>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="p-grid" *ngIf="!mostrarMenuApp()">
+  <div class="p-col-12 painel">
+    <div class="p-col-12" style="height: 94%">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="p-grid p-align-end footerApp">
+      <div class="p-col" style="height: 50%">
+        <p>© 2020 Desenvolvido por: <a href="#"><strong>UNA Developers</strong></a>.</p>
+      </div>
     </div>
   </div>
 </div>
