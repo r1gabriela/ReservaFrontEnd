@@ -29,6 +29,8 @@ export class AppComponent {
     this.authService.mostrarMenuEmitter.subscribe(
       mostrar => this.mostrarMenu = mostrar
     );
+      return this.mostrarMenu;
   }
+
 
 }

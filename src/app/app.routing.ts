@@ -11,6 +11,8 @@ import { ManterDependenteComponent } from './manter-dependente/manter-dependente
 import { ManterTipoComemoracaoComponent } from './manter-tipo-comemoracao/manter-tipo-comemoracao.component';
 import { ManterClienteComponent } from './manter-cliente/manter-cliente.component';
 import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
+import { ReservaComponent } from './reserva/reserva.component';
+import { ManterReservaComponent } from './manter-reserva/manter-reserva.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -53,6 +55,14 @@ const APP_ROUTES: Routes = [
     path: 'cliente/cadastro',
     component: ClienteComponent
   },
+  {
+    path: 'reserva',
+    component: ReservaComponent
+  },
+  {
+    path: 'reserva/manter',
+    component: ManterReservaComponent
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
