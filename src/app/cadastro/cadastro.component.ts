@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { Role } from '../shared/role';
 
 @Component({
   selector: 'app-cadastro',
@@ -31,10 +32,11 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastro() {
+    this.usuario.role.idRole = 2;
     this.usuarioService.cadastrar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cadastro', detail: "Operação efetuada com sucesso", life: 3000 });
-      this.router.navigate[('cliente/cadastro/')]
+      this.router.navigate[('cliente/cadastro')]
     }, (error) => {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
