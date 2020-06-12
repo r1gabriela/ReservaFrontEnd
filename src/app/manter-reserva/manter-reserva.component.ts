@@ -6,6 +6,7 @@ import { Mesa } from '../shared/mesa';
 import { ReservaService } from '../shared/service/reserva.service';
 import { MessageService } from 'primeng/api';
 import { PessoaService } from '../shared/service/pessoa.service';
+import { MesaService } from '../shared/service/mesa.service';
 
 @Component({
   selector: 'app-manter-reserva',
@@ -32,7 +33,9 @@ export class ManterReservaComponent implements OnInit {
 
   mesas: Mesa[];
 
-  constructor(private reservaService: ReservaService, private fb: FormBuilder, private messageService: MessageService, private pessoaService: PessoaService) { }
+
+
+  constructor(private reservaService: ReservaService, private fb: FormBuilder, private messageService: MessageService, private pessoaService: PessoaService, private mesaService: MesaService) { }
 
   ngOnInit(): void {
 
@@ -40,7 +43,7 @@ export class ManterReservaComponent implements OnInit {
 
     this.cols = [
       { field: 'pessoa.nome', header: 'Nome' },
-      { field: 'data', header: 'Data' }
+      { field: 'dataReserva', header: 'Data' }
 
     ];
 
@@ -48,7 +51,7 @@ export class ManterReservaComponent implements OnInit {
 
   createForm() {
     this.manterReservaForm = this.fb.group({
-      'data': new FormControl('', Validators.compose([Validators.required])),
+      'dataReserva': new FormControl('', Validators.compose([Validators.required])),
       'horaEntrada': new FormControl('', Validators.compose([Validators.required])),
       'horaSaida': new FormControl('', Validators.compose([Validators.required])),
       'capacidade': new FormControl('', Validators.compose([Validators.required])),
@@ -81,6 +84,10 @@ export class ManterReservaComponent implements OnInit {
     this.displayDialog = true;
   }
 
+  verDisponibilidadeMesa(){
+    this.mesaService.verDisponibilidadeMesa(this.reserva).subscribe(mesas => this.mesas = mesas)
+  }
+  habilitarBotaoDisponbilidade(){
+    return this.reserva.horaEntrada != null  && this.reserva.horaSaida != null && this.reserva.dataReserva != null && this.reserva.capacidade != null ? false : true
 }
-
-
+}
