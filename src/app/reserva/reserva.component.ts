@@ -6,6 +6,7 @@ import { Reserva } from '../shared/reserva';
 import { Pessoa } from '../shared/pessoa';
 import { PessoaService } from '../shared/service/pessoa.service';
 import { Mesa } from '../shared/mesa';
+import { MesaService } from '../shared/service/mesa.service';
 
 @Component({
   selector: 'app-reserva',
@@ -31,9 +32,7 @@ export class ReservaComponent implements OnInit {
 
   mesas: Mesa[];
 
-
-
-  constructor(private reservaService: ReservaService, private fb: FormBuilder, private messageService: MessageService, private pessoaService: PessoaService) { }
+  constructor(private reservaService: ReservaService, private fb: FormBuilder, private messageService: MessageService, private pessoaService: PessoaService, private mesaService: MesaService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -41,7 +40,7 @@ export class ReservaComponent implements OnInit {
     this.cols = [
       { field: 'pessoa.nome', header: 'Nome' },
       { field: 'pessoa.cpf', header: 'CPF' },
-      { field: 'data', header: 'Data' }
+      { field: 'dataReserva', header: 'Data' }
 
     ];
 
@@ -49,7 +48,7 @@ export class ReservaComponent implements OnInit {
   createForm() {
     this.reservaForm = this.fb.group({
       'pessoa': new FormControl('', Validators.compose([Validators.required])),
-      'data': new FormControl('', Validators.compose([Validators.required])),
+      'dataReserva': new FormControl('', Validators.compose([Validators.required])),
       'horaEntrada': new FormControl('', Validators.compose([Validators.required])),
       'horaSaida': new FormControl('', Validators.compose([Validators.required])),
       'capacidade': new FormControl('', Validators.compose([Validators.required])),
@@ -57,6 +56,7 @@ export class ReservaComponent implements OnInit {
     });
   }
   save() {
+
     this.reservaService.salvar(this.reserva).subscribe(reserva => {
       this.reserva = reserva;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Reserva', detail: "Operação efetuada com sucesso", life: 3000 });
@@ -83,6 +83,12 @@ export class ReservaComponent implements OnInit {
     });
   }
 
+  verDisponibilidadeMesa(){
+    this.mesaService.verDisponibilidadeMesa(this.reserva).subscribe(mesas => this.mesas = mesas)
+  }
+  habilitarBotaoDisponbilidade(){
+    return this.reserva.horaEntrada != null  && this.reserva.horaSaida != null && this.reserva.dataReserva != null && this.reserva.capacidade != null ? false : true
+  }
 }
 
 

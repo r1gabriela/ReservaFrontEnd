@@ -5,12 +5,12 @@ import { Time } from '@angular/common';
 
 export class Reserva {
   idReserva: number = 0;
-  data: Date = new Date();
+  dataReserva: Date = new Date();
   ativo: boolean;
   cliente: Cliente;
   mesa: Mesa = new Mesa();
   pessoa: Pessoa;
-  horaEntrada: Time;
-  horaSaida: Time;
-  capacidade: number
+  horaEntrada: Time = null;
+  horaSaida: Time = null;
+  capacidade: number = null;
 }

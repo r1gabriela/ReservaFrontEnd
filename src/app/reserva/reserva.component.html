@@ -49,21 +49,21 @@
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-calendar formControlName="data" [(ngModel)]="reserva.data"></p-calendar>
+                    <p-calendar formControlName="dataReserva" [(ngModel)]="reserva.dataReserva" dateFormat='yy-mm-dd'></p-calendar>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-inputMask [(ngModel)]="reserva.horaEntrada" mask="99:99" name="horaEntrada"
-                      formControlName="horaEntrada" id="horaEntrada" type="horaEntrada"></p-inputMask>
-                    <label for="email">Horário Entrada *</label>
+                    <p-inputMask [(ngModel)]="reserva.horaEntrada" mask= "99:99" name="horaEntrada"
+                      formControlName="horaEntrada" id="horaEntrada" type="time"></p-inputMask>
+                    <label for="horaEntrada">Horário Entrada *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-inputMask [(ngModel)]="reserva.horaSaida" mask="99:99" name="horaSaida"
-                      formControlName="horaSaida" id="horaSaida" type="horaSaida"></p-inputMask>
-                    <label for="email">Horário Saída *</label>
+                    <p-inputMask [(ngModel)]="reserva.horaSaida" mask= "99:99" name="horaSaida"
+                      formControlName="horaSaida" id="horaSaida" type="time"></p-inputMask>
+                    <label for="horaSaida">Horário Saída *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="ui-g-12">
                   <div class="ui-g-5">
-                    <p-button icon="pi pi-check" label="Ver Disponibilidade" size="50"></p-button>
+                    <p-button icon="pi pi-check" label="Ver Disponibilidade" size="50" (click)="verDisponibilidadeMesa() " [disabled]="habilitarBotaoDisponbilidade()"></p-button>
                   </div>
                   <div class="ui-g-7">
                     <p-dropdown formControlName="mesa" [options]="mesas" [(ngModel)]="reserva.mesa"
