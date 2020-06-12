@@ -11,6 +11,7 @@ export class ClienteService {
 
   private SALVAR = 'http://localhost:8080/restaurante/rest/cliente/salvar';
   private LISTAR = 'http://localhost:8080/restaurante/rest/cliente/listarTodos';
+  private PESQUISAR = 'http://localhost:8080/restaurante/rest/cliente/pesquisar';
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +23,10 @@ export class ClienteService {
     return this.http.get<Cliente[]>(this.LISTAR);
   }
 
+  pesquisar() {
+    return this.http.get<Cliente>(this.PESQUISAR);
+
+  }
   handleError(error: HttpErrorResponse) {
     return throwError(error.error)
   }

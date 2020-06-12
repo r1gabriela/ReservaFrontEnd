@@ -5,6 +5,7 @@ import { Cliente } from '../shared/cliente';
 import { MessageService } from 'primeng/api';
 
 
+
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
@@ -21,6 +22,9 @@ export class ClienteComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+
+    this.clienteService.pesquisar().subscribe(cliente =>this.cliente = cliente);
+    
   }
 
   createForm() {
