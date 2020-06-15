@@ -44,8 +44,8 @@
                     placeholder="Nome: *" size="250">
                 </div>
                 <div class="ui-g-12">
-                  <input type="text" formControlName="cpf" pInputText name="cpf" [(ngModel)]="dependente.cpf"
-                    placeholder="CPF: *">
+                  <p-inputMask mask="999.999.999-99" type="text" formControlName="cpf" pInputText name="cpf" [(ngModel)]="dependente.cpf"
+                    placeholder="CPF: *"></p-inputMask>
                 </div>
               </div>
             </form>
