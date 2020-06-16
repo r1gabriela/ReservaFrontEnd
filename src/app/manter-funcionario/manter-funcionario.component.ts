@@ -31,9 +31,8 @@ export class ManterFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'nome', header: 'Nome' },
-      { field: 'cpf', header: 'CPF' },
-      { field: 'tipoFuncionario', header: 'Tipo' },
+      { field: 'nome', object: 'false', header: 'Nome' },
+      { field: 'cpf', object: 'false', header: 'CPF' },
     ];
 
     this.createForm();
@@ -44,7 +43,6 @@ export class ManterFuncionarioComponent implements OnInit {
     this.manterFuncionarioForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
       'cpf': new FormControl('', Validators.compose([Validators.required])),
-      'tipo': new FormControl('', Validators.required)
     });
   }
 
@@ -52,10 +50,6 @@ export class ManterFuncionarioComponent implements OnInit {
     this.newFuncionario = true;
     this.displayDialog = true;
     this.funcionario = new Funcionario();
-  }
-
-  delete() {
-    this.displayDialog = false;
   }
 
   onRowSelect(event) {
@@ -66,6 +60,7 @@ export class ManterFuncionarioComponent implements OnInit {
 
   salvar() {
     this.displayDialog = false;
+    this.funcionario.tipoFuncionario.idTipoFuncionario = 1;
     this.funcionarioService.salvar(this.funcionario).subscribe(funcionario => {
       this.funcionario = funcionario;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Funcionario', detail: "Operação efetuada com sucesso", life: 3000 });

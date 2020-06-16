@@ -60,14 +60,17 @@ export class ManterTipoComemoracaoComponent implements OnInit {
       this.listarTodos();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Tipo Comemoração', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listarTodos();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
 
   delete() {
     this.displayDialog = false;
-    this.tipoComemoracaoService.deletar(this.tipo).subscribe(tipo => Boolean);
+    this.tipoComemoracaoService.deletar(this.tipo).subscribe(resp => {
+      Boolean;
     this.listarTodos();
+    })
   }
 
   onRowSelect(event) {

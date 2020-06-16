@@ -9,6 +9,7 @@ export class ReservaService {
 
   private SALVAR = 'http://localhost:8080/restaurante/rest/reserva/salvar';
   private EXCLUIR = 'http://localhost:8080/restaurante/rest/reserva/excluir';
+  private LISTAR = 'http://localhost:8080/restaurante/rest/reserva/listar';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,5 +19,9 @@ export class ReservaService {
 
   excluir(reserva: Reserva) {
     return this.httpClient.post<Boolean>(this.EXCLUIR, reserva);
+  }
+
+  listar(){
+    return this.httpClient.get<Reserva[]>(this.LISTAR);
   }
 }

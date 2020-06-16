@@ -4,6 +4,7 @@ import { UsuarioService } from '../shared/service/usuario.service';
 import { Usuario } from '../shared/usuario';
 import { Validators, FormControl, FormGroup, FormBuilder, Form } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { RoleService } from '../shared/service/role.service';
 
 @Component({
   selector: 'app-manter-usuario',
@@ -29,18 +30,21 @@ export class ManterUsuarioComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder,
+     private messageService: MessageService,
+     private roleService: RoleService) { }
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'pessoa.nome', header: 'Nome' },
-      { field: 'pessoa.cpf', header: 'CPF' },
-      { field: 'login', header: 'Login' },
-      { field: 'role.nome', header: 'Role' },
-      { field: 'ativo', header: 'Ativo' },
+      { field: 'pessoa', subfield: 'nome', object: 'true', header: 'Nome' },
+      { field: 'pessoa', subfield: 'cpf', object: 'true', header: 'CPF' },
+      { field: 'login', object: 'false', header: 'Login' },
+      { field: 'role', subfield: 'nome', object: 'true', header: 'Role' },
+      { field: 'ativo', object: 'false', header: 'Ativo' },
     ];
     this.listarTodos();
     this.createForm();
+    this.listarRole()
   }
 
   showDialogToAdd() {
@@ -62,7 +66,10 @@ export class ManterUsuarioComponent implements OnInit {
   }
 
   delete() {
-    this.usuarioService.excluir(this.usuario).subscribe(resp => Boolean);
+    this.usuarioService.excluir(this.usuario).subscribe(resp => {
+      Boolean;
+      this.listarTodos;
+    });
   }
 
   onRowSelect(event) {
@@ -74,9 +81,15 @@ export class ManterUsuarioComponent implements OnInit {
   save() {
     this.usuarioService.salvar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
+      this.listarTodos;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Usuario', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listarTodos;
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
+  }
+
+  listarRole(){
+    this.roleService.listarRole().subscribe(roles => this.roles = roles);
   }
 }

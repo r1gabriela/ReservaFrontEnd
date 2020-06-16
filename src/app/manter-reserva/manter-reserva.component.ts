@@ -62,14 +62,23 @@ export class ManterReservaComponent implements OnInit {
   save() {
     this.reservaService.salvar(this.reserva).subscribe(reserva => {
       this.reserva = reserva;
+      this.listar();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Reserva', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listar();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
 
   delete() {
-    this.reservaService.excluir(this.reserva).subscribe(resp => Boolean);
+    this.reservaService.excluir(this.reserva).subscribe(resp => {
+      Boolean;
+      this.listar();
+    });
+  }
+
+  listar(){
+    this.reservaService.listar().subscribe(reservas => this.reservas = reservas)
   }
 
   showDialogToAdd() {

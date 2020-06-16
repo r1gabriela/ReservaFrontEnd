@@ -66,12 +66,10 @@ export class ManterClienteComponent implements OnInit {
     });
   }
 
-  delete() {
-    this.displayDialog = false;
-  }
-
   onRowSelect(event) {
     this.displayDialog = true;
+    this.cliente = event.data;
+    this.newCliente = false;
   }
 
   listarTodos() {
