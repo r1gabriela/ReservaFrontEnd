@@ -76,14 +76,18 @@ export class ManterDataComemoracaoComponent implements OnInit {
       this.listar();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Data Comemoração', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listar();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
 
 
   delete() {
-    this.displayDialog = false;
-    this.listar();
+    this.dataComemorativaService.excluir(this.dataComemoracao).subscribe(resp => {
+      this.displayDialog = false;
+      this.listar();
+    })
+ 
   }
 
   onRowSelect(event) {

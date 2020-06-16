@@ -56,15 +56,19 @@ export class ManterMesaComponent implements OnInit {
   }
 
   save() {
-    this.mesaService.salvar(this.mesa).subscribe(mesa => this.mesa = mesa);
+    this.mesaService.salvar(this.mesa).subscribe(mesa => {
+    this.mesa = mesa
     this.displayDialog = false;
     this.listar();
+    });
   }
 
   delete() {
     this.displayDialog = false;
-    this.mesaService.excluir(this.mesa).subscribe(resp => Boolean);
+    this.mesaService.excluir(this.mesa).subscribe(resp => {
+      Boolean;
     this.listar();
+    });
   }
 
   onRowSelect(event) {

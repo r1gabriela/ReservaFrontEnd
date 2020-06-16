@@ -62,12 +62,14 @@ export class ManterUsuarioComponent implements OnInit {
   }
 
   listarTodos() {
-    debugger
     this.usuarioService.listarTodos().subscribe(resp => this.usuarios = resp);
   }
 
   delete() {
-    this.usuarioService.excluir(this.usuario).subscribe(resp => Boolean);
+    this.usuarioService.excluir(this.usuario).subscribe(resp => {
+      Boolean;
+      this.listarTodos;
+    });
   }
 
   onRowSelect(event) {
@@ -79,8 +81,10 @@ export class ManterUsuarioComponent implements OnInit {
   save() {
     this.usuarioService.salvar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
+      this.listarTodos;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Usuario', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listarTodos;
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
