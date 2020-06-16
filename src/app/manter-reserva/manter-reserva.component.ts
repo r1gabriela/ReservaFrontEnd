@@ -42,10 +42,10 @@ export class ManterReservaComponent implements OnInit {
     this.createForm();
 
     this.cols = [
-      { field: 'mesa.localizacao', header: 'Localização da Mesa' },
-      { field: 'dataReserva', header: 'Data' },
-      { field: 'mesa.capacidade', header: 'Capacidade da Mesa'},
-      { field: 'horaEntrada', header: 'Hora da Entrada' }
+      { field: 'mesa', subfield: 'localizacao', object: 'true', header: 'Localização da Mesa' },
+      { field: 'dataReserva', object: 'false', header: 'Data' },
+      { field: 'mesa', subfield: 'capacidade', object: 'true', header: 'Capacidade da Mesa'},
+      { field: 'horaEntrada', object: 'false', header: 'Hora da Entrada' }
     ];
   }
 
