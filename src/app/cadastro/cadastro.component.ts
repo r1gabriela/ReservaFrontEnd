@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario';
 import { UsuarioService } from "../shared/service/usuario.service";
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -31,11 +29,14 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastro() {
+    this.usuario.role.idRole = 2;
     this.usuarioService.cadastrar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
+      window.localStorage.setItem('logado', 'true');
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cadastro', detail: "Operação efetuada com sucesso", life: 3000 });
-      this.router.navigate[('cliente/cadastro/')]
+      this.router.navigate[('cliente/cadastro')]
     }, (error) => {
+      window.localStorage.setItem('logado', 'false');
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }

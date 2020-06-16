@@ -40,12 +40,17 @@
             <form [formGroup]="manterDependenteForm">
               <div class="ui-g ui-fluid" *ngIf="dependente">
                 <div class="ui-g-12">
-                  <input type="text" formControlName="nome" pInputText [(ngModel)]="dependente.nome" field="nome"
-                    placeholder="Nome: *" size="250">
+                  <span class="ui-float-label">
+                  <input id="nome" type="text" formControlName="nome" pInputText [(ngModel)]="dependente.nome" name="nome">
+                  <label for="nome">NOME: *</label>
+                  </span>
                 </div>
                 <div class="ui-g-12">
-                  <input type="text" formControlName="cpf" pInputText name="cpf" [(ngModel)]="dependente.cpf"
-                    placeholder="CPF: *">
+                  <span class="ui-float-label">
+                    <p-inputMask mask="999.999.999-99" [(ngModel)]="dependente.cpf" formControlName="cpf" name="cpf" id="cpf"
+                    type="text"></p-inputMask>
+                    <label for="cpf">CPF: *</label>
+                  </span>
                 </div>
               </div>
             </form>

@@ -9,7 +9,7 @@
           <p-table [columns]="cols" [value]="reservas" selectionMode="single" [(selection)]="selectedReserva"
             (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
             <ng-template pTemplate="caption">
-              Lista de Clientes
+              Lista de Reservas
             </ng-template>
             <ng-template pTemplate="header" let-columns>
               <tr>
@@ -22,7 +22,12 @@
             <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr [pSelectableRow]="rowData">
                 <td *ngFor="let col of columns">
-                  {{rowData[col.field]}}
+                  <span *ngIf="col.object == 'true'">
+                    {{rowData[col.field][col.subfield]}}
+                  </span>
+                  <span *ngIf="col.object == 'false'">
+                    {{rowData[col.field]}}
+                  </span>
                 </td>
               </tr>
             </ng-template>
@@ -41,21 +46,22 @@
               <div class="ui-g ui-fluid" *ngIf="reserva">
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-calendar formControlName="data" [(ngModel)]="reserva.data"></p-calendar>
+                    <p-calendar formControlName="dataReserva" [(ngModel)]="reserva.dataReserva" dateFormat='yy-mm-dd'
+                      name="dataReserva" placeholder="Data da Reserva:*"></p-calendar>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-inputMask [(ngModel)]="reserva.horaEntrada" mask="99:99" name="horaEntrada"
-                      formControlName="horaEntrada" id="horaEntrada" type="horaEntrada"></p-inputMask>
-                    <label for="email">Horário Entrada *</label>
+                    <input [(ngModel)]="reserva.horaEntrada" step="1" name="horaEntrada"
+                      formControlName="horaEntrada" id="horaEntrada" type="time" pInputText>
+                    <label for="he">Horário Entrada *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-inputMask [(ngModel)]="reserva.horaSaida" mask="99:99" name="horaSaida"
-                      formControlName="horaSaida" id="horaSaida" type="horaSaida"></p-inputMask>
-                    <label for="email">Horário Saída *</label>
+                    <input [(ngModel)]="reserva.horaSaida" step="1" name="horaSaida"
+                      formControlName="horaSaida" id="horaSaida" type="time" pInputText>
+                    <label for="hs">Horário Saída *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
@@ -67,11 +73,11 @@
                 </div>
                 <div class="ui-g-12">
                   <div class="ui-g-5">
-                    <p-button icon="pi pi-check" label="Ver Disponibilidade" size="50"></p-button>
+                    <p-button icon="pi pi-check" label="Ver Disponibilidade" size="50" (click)="verDisponibilidadeMesa()" [disabled] = "habilitarBotaoDisponbilidade()"></p-button>
                   </div>
                   <div class="ui-g-7">
                     <p-dropdown formControlName="mesa" [options]="mesas" [(ngModel)]="reserva.mesa"
-                      placeholder="Selecione a Mesa" optionLabel="descricao" [showClear]="true"></p-dropdown>
+                      placeholder="Selecione a Mesa" optionLabel="localizacao" [showClear]="true"></p-dropdown>
                   </div>
                 </div>
               </div>

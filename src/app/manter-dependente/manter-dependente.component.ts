@@ -5,6 +5,7 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import { MessageService } from 'primeng/api';
 
 
+
 @Component({
   selector: 'app-manter-dependente',
   templateUrl: './manter-dependente.component.html',
@@ -42,7 +43,7 @@ export class ManterDependenteComponent implements OnInit {
   createForm() {
     this.manterDependenteForm = this.fb.group({
       'nome': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(255)])),
-      'cpf': new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^\d{11}$/)])),
+      'cpf': new FormControl('', Validators.compose([Validators.required])),
     });
   }
 
@@ -56,15 +57,20 @@ export class ManterDependenteComponent implements OnInit {
     this.dependenteService.salvar(this.dependente).subscribe(dependente => {
       this.dependente = dependente;
       this.displayDialog = false;
+      this.listarDependentes();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Dependente', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listarDependentes();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
 
   delete() {
     this.displayDialog = false;
-    this.dependenteService.excluir(this.dependente).subscribe(resp => Boolean);
+    this.dependenteService.excluir(this.dependente).subscribe(resp => {
+      Boolean;
+      this.listarDependentes();
+    });
   }
 
   onRowSelect(event) {

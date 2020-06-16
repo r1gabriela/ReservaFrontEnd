@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './shared/service/auth.service';
 
 declare const $: any;
 
@@ -20,16 +19,13 @@ export class AppComponent {
     return true;
   };
 
-  constructor(private authService: AuthService){}
+  constructor(){}
 
   ngOnInit(){
   }
 
   mostrarMenuApp(){
-    this.authService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar
-    );
-      return this.mostrarMenu;
+     return window.localStorage.getItem('logado');
   }
 
 

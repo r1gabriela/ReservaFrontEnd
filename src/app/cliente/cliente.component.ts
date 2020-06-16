@@ -3,6 +3,8 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import { ClienteService } from '../shared/service/cliente.service';
 import { Cliente } from '../shared/cliente';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router'
+
 
 
 @Component({
@@ -17,10 +19,15 @@ export class ClienteComponent implements OnInit {
 
   cliente: Cliente = new Cliente();
 
-  constructor(private clienteService: ClienteService, private fb: FormBuilder, private messageService: MessageService) { }
+  constructor(private clienteService: ClienteService, private fb: FormBuilder, 
+    private messageService: MessageService,
+    private router: Router) { }
 
   ngOnInit() {
     this.createForm();
+
+    this.clienteService.pesquisar().subscribe(cliente =>this.cliente = cliente);
+    
   }
 
   createForm() {
@@ -35,6 +42,7 @@ export class ClienteComponent implements OnInit {
   save() {
     this.clienteService.salvar(this.cliente).subscribe(resp => {
       this.cliente = resp;
+      this.router.navigate(['reserva']);
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cliente', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });

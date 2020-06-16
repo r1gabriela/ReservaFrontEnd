@@ -41,9 +41,9 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'nome', header: 'Nome' },
-      { field: 'nomeTipo', header: 'Tipo' },
-      { field: 'dataComemoracao', header: 'Data' }
+      { field: 'pessoa', subfield: 'nome', object: 'true', header: 'Nome' },
+      { field: 'tipoComemoracao', subfield: 'descricao', object: 'true', header: 'Tipo' },
+      { field: 'dataComemoracao', object: 'false', header: 'Data' }
     ];
 
     this.listar();
@@ -76,18 +76,24 @@ export class ManterDataComemoracaoComponent implements OnInit {
       this.listar();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Data Comemoração', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listar();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
 
 
   delete() {
-    this.displayDialog = false;
-    this.listar();
+    this.dataComemorativaService.excluir(this.dataComemoracao).subscribe(resp => {
+      this.displayDialog = false;
+      this.listar();
+    })
+ 
   }
 
   onRowSelect(event) {
     this.displayDialog = true;
+    this.dataComemoracao = event.data;
+    this.newData = false;
   }
 
   listar() {
