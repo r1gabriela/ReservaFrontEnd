@@ -31,9 +31,9 @@ export class ManterFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'nome', header: 'Nome' },
-      { field: 'cpf', header: 'CPF' },
-      { field: 'tipoFuncionario', header: 'Tipo' },
+      { field: 'nome', object: 'false', header: 'Nome' },
+      { field: 'cpf', object: 'false', header: 'CPF' },
+      { field: 'tipoFuncionario', subfiel: 'descricao', object: 'true', header: 'Tipo' },
     ];
 
     this.createForm();

@@ -33,11 +33,11 @@ export class ManterUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'pessoa.nome', header: 'Nome' },
-      { field: 'pessoa.cpf', header: 'CPF' },
-      { field: 'login', header: 'Login' },
-      { field: 'role.nome', header: 'Role' },
-      { field: 'ativo', header: 'Ativo' },
+      { field: 'pessoa', subfield: 'nome', object: 'true', header: 'Nome' },
+      { field: 'pessoa', subfield: 'cpf', object: 'true', header: 'CPF' },
+      { field: 'login', object: 'false', header: 'Login' },
+      { field: 'role', subfield: 'nome', object: 'true', header: 'Role' },
+      { field: 'ativo', object: 'false', header: 'Ativo' },
     ];
     this.listarTodos();
     this.createForm();
@@ -58,6 +58,7 @@ export class ManterUsuarioComponent implements OnInit {
   }
 
   listarTodos() {
+    debugger
     this.usuarioService.listarTodos().subscribe(resp => this.usuarios = resp);
   }
 
