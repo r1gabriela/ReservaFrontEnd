@@ -5,7 +5,7 @@ import { Time } from '@angular/common';
 
 export class Reserva {
   idReserva: number = 0;
-  dataReserva: Date;
+  dataReserva: Date = null;
   ativo: boolean = true;
   cliente: Cliente;
   mesa: Mesa = new Mesa();
