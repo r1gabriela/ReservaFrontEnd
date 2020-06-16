@@ -74,7 +74,7 @@ import { ManterReservaComponent } from './manter-reserva/manter-reserva.componen
     ToastModule,
     InputMaskModule
   ],
-  providers: [AuthService, MessageService],
+  providers: [AuthService, MessageService, MenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

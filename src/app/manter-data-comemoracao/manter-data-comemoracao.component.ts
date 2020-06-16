@@ -92,10 +92,11 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   onRowSelect(event) {
     this.displayDialog = true;
+    this.dataComemoracao = event.data;
+    this.newData = false;
   }
 
   listar() {
-    debugger
     this.dataComemorativaService.listar().subscribe(datas => this.datas = datas);
   }
 

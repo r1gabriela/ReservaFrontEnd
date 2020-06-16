@@ -62,6 +62,7 @@ export class ManterClienteComponent implements OnInit {
       this.listarTodos();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cliente', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
+      this.listarTodos();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }
