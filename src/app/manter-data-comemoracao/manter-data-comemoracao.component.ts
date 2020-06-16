@@ -41,8 +41,8 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'pessoa', subfiel: 'nome', object: 'true', header: 'Nome' },
-      { field: 'tipo', subfiel: 'descricao', object: 'true', header: 'Tipo' },
+      { field: 'pessoa', subfield: 'nome', object: 'true', header: 'Nome' },
+      { field: 'tipoComemoracao', subfield: 'descricao', object: 'true', header: 'Tipo' },
       { field: 'dataComemoracao', object: 'false', header: 'Data' }
     ];
 
@@ -92,6 +92,8 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   onRowSelect(event) {
     this.displayDialog = true;
+    this.dataComemoracao = event.data;
+    this.newData = false;
   }
 
   listar() {

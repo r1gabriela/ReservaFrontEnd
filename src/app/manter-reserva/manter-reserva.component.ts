@@ -42,11 +42,13 @@ export class ManterReservaComponent implements OnInit {
     this.createForm();
 
     this.cols = [
-      { field: 'mesa.localizacao', header: 'Localização da Mesa' },
-      { field: 'dataReserva', header: 'Data' },
-      { field: 'mesa.capacidade', header: 'Capacidade da Mesa'},
-      { field: 'horaEntrada', header: 'Hora da Entrada' }
+      { field: 'mesa', subfield: 'localizacao', object: 'true', header: 'Localização da Mesa' },
+      { field: 'dataReserva', object: 'false', header: 'Data' },
+      { field: 'mesa', subfield: 'capacidade', object: 'true', header: 'Capacidade da Mesa'},
+      { field: 'horaEntrada', object: 'false', header: 'Hora da Entrada' }
     ];
+
+    this.listar();
   }
 
   createForm() {
@@ -64,6 +66,7 @@ export class ManterReservaComponent implements OnInit {
       this.reserva = reserva;
       this.listar();
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Reserva', detail: "Operação efetuada com sucesso", life: 3000 });
+      this.displayDialog = false;
     }, (error) => {
       this.listar();
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
@@ -74,6 +77,7 @@ export class ManterReservaComponent implements OnInit {
     this.reservaService.excluir(this.reserva).subscribe(resp => {
       Boolean;
       this.listar();
+      this.displayDialog = false;
     });
   }
 

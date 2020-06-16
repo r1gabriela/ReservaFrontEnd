@@ -82,6 +82,7 @@ export class ManterUsuarioComponent implements OnInit {
     this.usuarioService.salvar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
       this.listarTodos;
+      this.displayDialog = false;
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Usuario', detail: "Operação efetuada com sucesso", life: 3000 });
     }, (error) => {
       this.listarTodos;
