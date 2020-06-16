@@ -4,6 +4,7 @@ import { UsuarioService } from '../shared/service/usuario.service';
 import { Usuario } from '../shared/usuario';
 import { Validators, FormControl, FormGroup, FormBuilder, Form } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { RoleService } from '../shared/service/role.service';
 
 @Component({
   selector: 'app-manter-usuario',
@@ -29,7 +30,9 @@ export class ManterUsuarioComponent implements OnInit {
 
   cols: any[];
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder,
+     private messageService: MessageService,
+     private roleService: RoleService) { }
 
   ngOnInit(): void {
     this.cols = [
@@ -41,6 +44,7 @@ export class ManterUsuarioComponent implements OnInit {
     ];
     this.listarTodos();
     this.createForm();
+    this.listarRole()
   }
 
   showDialogToAdd() {
@@ -79,5 +83,9 @@ export class ManterUsuarioComponent implements OnInit {
     }, (error) => {
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
+  }
+
+  listarRole(){
+    this.roleService.listarRole().subscribe(roles => this.roles = roles);
   }
 }
