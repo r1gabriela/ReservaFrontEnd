@@ -9,7 +9,7 @@
           <p-table [columns]="cols" [value]="reservas" selectionMode="single" [(selection)]="selectedReserva"
             (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
             <ng-template pTemplate="caption">
-              Lista de Clientes
+              Lista de Reservas
             </ng-template>
             <ng-template pTemplate="header" let-columns>
               <tr>
@@ -22,7 +22,12 @@
             <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr [pSelectableRow]="rowData">
                 <td *ngFor="let col of columns">
-                  {{rowData[col.field]}}
+                  <span *ngIf="col.object == 'true'">
+                    {{rowData[col.field][col.subfield]}}
+                  </span>
+                  <span *ngIf="col.object == 'false'">
+                    {{rowData[col.field]}}
+                  </span>
                 </td>
               </tr>
             </ng-template>
@@ -35,34 +40,35 @@
 
           <p-toast position="top-right" key="msg"></p-toast>
 
-          <p-dialog header="Detalhes Cliente" [(visible)]="displayDialog" [focusOnShow]="false" showEffect="fade"
+          <p-dialog header="Detalhes Reserva" [(visible)]="displayDialog" [focusOnShow]="false" showEffect="fade"
             [style]="{width: '500px'}">
             <form [formGroup]="reservaForm">
               <div class="ui-g ui-fluid" *ngIf="reserva">
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-autoComplete [(ngModel)]="reserva.pessoa" formControlName="pessoa" [suggestions]="pessoa"
-                      (completeMethod)="search($event)">
+                    <p-autoComplete [(ngModel)]="reserva.cliente" formControlName="cliente" [suggestions]="clientes" field="cpf"
+                      (completeMethod)="search($event)" [minLength]="3">
                     </p-autoComplete>
                     <label for="cpf">CPF: *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-calendar formControlName="dataReserva" [(ngModel)]="reserva.dataReserva" dateFormat='yy-mm-dd'></p-calendar>
+                    <p-calendar formControlName="dataReserva" [(ngModel)]="reserva.dataReserva" dateFormat='yy-mm-dd'
+                     name="dataReserva" placeholder="Data da Reserva:*"></p-calendar>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-inputMask [(ngModel)]="reserva.horaEntrada" mask= "99:99" name="horaEntrada"
-                      formControlName="horaEntrada" id="horaEntrada" type="time"></p-inputMask>
+                    <input [(ngModel)]="reserva.horaEntrada" step="1" name="horaEntrada"
+                      formControlName="horaEntrada" id="horaEntrada" type="time" pInputText>
                     <label for="horaEntrada">Horário Entrada *</label>
                   </span>
                 </div>
                 <div class="ui-g-12">
                   <span class="ui-float-label">
-                    <p-inputMask [(ngModel)]="reserva.horaSaida" mask= "99:99" name="horaSaida"
-                      formControlName="horaSaida" id="horaSaida" type="time"></p-inputMask>
+                    <input [(ngModel)]="reserva.horaSaida" step="1" name="horaSaida"
+                    formControlName="horaSaida" id="horaSaida" type="time" pInputText>
                     <label for="horaSaida">Horário Saída *</label>
                   </span>
                 </div>
@@ -79,7 +85,7 @@
                   </div>
                   <div class="ui-g-7">
                     <p-dropdown formControlName="mesa" [options]="mesas" [(ngModel)]="reserva.mesa"
-                      placeholder="Selecione a Mesa" optionLabel="descricao" [showClear]="true"></p-dropdown>
+                      placeholder="Selecione a Mesa" optionLabel="localizacao" [showClear]="true"></p-dropdown>
                   </div>
                 </div>
               </div>

@@ -98,6 +98,7 @@ export class ManterReservaComponent implements OnInit {
   }
 
   verDisponibilidadeMesa(){
+    debugger
     this.mesaService.verDisponibilidadeMesa(this.reserva).subscribe(mesas => this.mesas = mesas)
   }
 

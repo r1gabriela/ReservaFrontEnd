@@ -5,6 +5,7 @@ import { Usuario } from '../shared/usuario';
 import { Validators, FormControl, FormGroup, FormBuilder, Form } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { RoleService } from '../shared/service/role.service';
+import { Pessoa } from '../shared/pessoa';
 
 @Component({
   selector: 'app-manter-usuario',
@@ -25,6 +26,8 @@ export class ManterUsuarioComponent implements OnInit {
   newUsuario: boolean;
 
   usuarios: Usuario[];
+
+  pessoas: Pessoa[];
 
   roles: Role[];
 
@@ -55,8 +58,9 @@ export class ManterUsuarioComponent implements OnInit {
 
   createForm() {
     this.manterUsuarioForm = this.fb.group({
-      'senha': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])),
+      'pessoa': new FormControl('', Validators.compose([Validators.required])),
       'login': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)])),
+      'senha': new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])),
       'role': new FormControl('', Validators.compose([Validators.required])),
     });
   }
@@ -76,6 +80,10 @@ export class ManterUsuarioComponent implements OnInit {
     this.newUsuario = false;
     this.usuario = event.data;
     this.displayDialog = true;
+  }
+
+  search(event) {
+    this.usuarioService.listarPorCpf(event.query).subscribe(resp => this.pessoas = resp);
   }
 
   save() {
