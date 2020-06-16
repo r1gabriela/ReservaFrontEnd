@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './shared/service/auth.service';
+import { AutenticarServiceService } from './shared/service/autenticar-service.service';
 
 declare const $: any;
 
@@ -20,16 +20,13 @@ export class AppComponent {
     return true;
   };
 
-  constructor(private authService: AuthService){}
+  constructor(private autenticarService: AutenticarServiceService){}
 
   ngOnInit(){
   }
 
   mostrarMenuApp(){
-    this.authService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar
-    );
-      return this.mostrarMenu;
+     return this.autenticarService.getAuth();
   }
 
 
