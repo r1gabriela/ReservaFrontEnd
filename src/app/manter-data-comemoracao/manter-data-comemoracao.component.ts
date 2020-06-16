@@ -41,8 +41,8 @@ export class ManterDataComemoracaoComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'pessoa', subfiel: 'nome', object: 'true', header: 'Nome' },
-      { field: 'tipo', subfiel: 'descricao', object: 'true', header: 'Tipo' },
+      { field: 'pessoa', subfield: 'nome', object: 'true', header: 'Nome' },
+      { field: 'tipoComemoracao', subfield: 'descricao', object: 'true', header: 'Tipo' },
       { field: 'dataComemoracao', object: 'false', header: 'Data' }
     ];
 
@@ -95,6 +95,7 @@ export class ManterDataComemoracaoComponent implements OnInit {
   }
 
   listar() {
+    debugger
     this.dataComemorativaService.listar().subscribe(datas => this.datas = datas);
   }
 
