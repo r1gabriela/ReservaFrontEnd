@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { RoleService } from '../shared/service/role.service';
 import { Role } from '../shared/role';
+import { UsuarioService } from '../shared/service/usuario.service';
 
 declare const $: any;
 
@@ -18,7 +19,7 @@ export class MenuComponent implements OnInit {
 
   itemsFuncionario: MenuItem[];
 
-  constructor(private roleService: RoleService) { }
+  constructor(private roleService: RoleService, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.itemsCliente = [
@@ -34,7 +35,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Reservas',
-        routerLink: ['/reservas/manter'],
+        routerLink: ['/reserva/manter'],
         icon: 'pi pi-pw pi-bookmark'
       },
       {
@@ -42,6 +43,14 @@ export class MenuComponent implements OnInit {
         routerLink: ['/cliente/cadastro'],
         icon: 'pi pi-pw pi-id-card'
       },
+      {
+        label: 'Logout',
+        command: (event) => {
+          this.logout();
+        },
+        routerLink: ['/login'],
+        icon: 'pi pi-pw pi-sign-out'
+      }
     ];
     this.itemsFuncionario = [
       {
@@ -69,6 +78,14 @@ export class MenuComponent implements OnInit {
         routerLink: ['/usuario/manter'],
         icon: 'pi pi-pw pi-id-card'
       },
+      {
+        label: 'Logout',
+        command: (event) => {
+          this.logout();
+        },
+        routerLink: ['/login'],
+        icon: 'pi pi-pw pi-sign-out'
+      }
     ];
   }
 
@@ -82,5 +99,10 @@ export class MenuComponent implements OnInit {
     }
     return true;
   };
+
+  logout(){
+    this.usuarioService.logout();
+    window.localStorage.setItem('logado', 'false');
+  }
 
 }

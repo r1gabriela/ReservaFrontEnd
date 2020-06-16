@@ -14,6 +14,7 @@ export class UsuarioService {
   private LISTARTODOS = 'http://localhost:8080/restaurante/rest/usuario/listarTodos';
   private EXCLUIR = 'http://localhost:8080/restaurante/rest/usuario/excluir';
   private SALVAR = 'http://localhost:8080/restaurante/rest/usuario/salvar';
+  private LOGOUT = 'http://localhost:8080/restaurante/rest/logout';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,5 +40,9 @@ export class UsuarioService {
 
   handleError(error: HttpErrorResponse) {
     return throwError(error.error);
+  }
+
+  logout(){
+    return this.httpClient.get<Usuario>(this.LOGOUT);
   }
 }

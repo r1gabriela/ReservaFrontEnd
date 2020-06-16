@@ -5,7 +5,6 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { MenuComponent } from '../menu/menu.component';
-import { AutenticarServiceService } from '../shared/service/autenticar-service.service';
 import { RoleService } from '../shared/service/role.service';
 import { Role } from '../shared/role';
 
@@ -23,7 +22,7 @@ export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
 
   constructor(private usuarioService: UsuarioService, private fb: FormBuilder,
-    private autenticarService: AutenticarServiceService, private router: Router, private messageService: MessageService,
+    private router: Router, private messageService: MessageService,
     private menuComponent: MenuComponent, private roleService: RoleService) { }
 
   ngOnInit() {

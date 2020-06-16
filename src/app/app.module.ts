@@ -33,7 +33,6 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { ReservaComponent } from './reserva/reserva.component';
 import { MessageService } from 'primeng/api';
 import { ManterReservaComponent } from './manter-reserva/manter-reserva.component';
-import { AutenticarServiceService } from './shared/service/autenticar-service.service';
 
 
 @NgModule({
@@ -74,7 +73,7 @@ import { AutenticarServiceService } from './shared/service/autenticar-service.se
     ToastModule,
     InputMaskModule
   ],
-  providers: [MessageService, MenuComponent, AutenticarServiceService],
+  providers: [MessageService, MenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

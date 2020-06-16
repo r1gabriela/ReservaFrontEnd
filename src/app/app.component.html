@@ -1,4 +1,4 @@
-<div class="p-grid" *ngIf="!isMobileMenu() && mostrarMenuApp()">
+<div class="p-grid" *ngIf="!isMobileMenu() && mostrarMenuApp() == 'true'">
   <div class="p-col-2 painel">
     <app-menu></app-menu>
   </div>
@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="p-grid" *ngIf="isMobileMenu() && mostrarMenuApp()">
+<div class="p-grid" *ngIf="isMobileMenu() && mostrarMenuApp() == 'true'">
   <div class="p-col-1 p-col-offset-11" style="height: 6% !important;">
     <app-menu></app-menu>
   </div>
@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<div class="p-grid" *ngIf="!mostrarMenuApp()">
+<div class="p-grid" *ngIf="mostrarMenuApp() == 'false'">
   <div class="p-col-12 painel">
     <div class="p-col-12" style="height: 94%">
       <router-outlet></router-outlet>

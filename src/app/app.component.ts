@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AutenticarServiceService } from './shared/service/autenticar-service.service';
 
 declare const $: any;
 
@@ -20,13 +19,13 @@ export class AppComponent {
     return true;
   };
 
-  constructor(private autenticarService: AutenticarServiceService){}
+  constructor(){}
 
   ngOnInit(){
   }
 
   mostrarMenuApp(){
-     return this.autenticarService.getAuth();
+     return window.localStorage.getItem('logado');
   }
 
 

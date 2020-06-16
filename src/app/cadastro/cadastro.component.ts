@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../shared/usuario';
 import { UsuarioService } from "../shared/service/usuario.service";
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { Role } from '../shared/role';
-import { AutenticarServiceService } from '../shared/service/autenticar-service.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -21,7 +17,7 @@ export class CadastroComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService, private router: Router, private autenticarService: AutenticarServiceService) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService, private router: Router) { }
 
   ngOnInit() {
     this.usuarioForm = this.fb.group({
