@@ -10,7 +10,7 @@ export class Reserva {
   cliente: Cliente;
   mesa: Mesa = new Mesa();
   pessoa: Pessoa;
-  horaEntrada: Time = null;
-  horaSaida: Time = null;
+  horaEntrada: Time;
+  horaSaida: Time;
   capacidade: number = null;
 }

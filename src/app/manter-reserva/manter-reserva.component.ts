@@ -33,7 +33,7 @@ export class ManterReservaComponent implements OnInit {
 
   mesas: Mesa[];
 
-
+  mesa: Mesa;
 
   constructor(private reservaService: ReservaService, private fb: FormBuilder, private messageService: MessageService, private pessoaService: PessoaService, private mesaService: MesaService) { }
 
@@ -42,11 +42,11 @@ export class ManterReservaComponent implements OnInit {
     this.createForm();
 
     this.cols = [
-      { field: 'pessoa.nome', header: 'Nome' },
-      { field: 'dataReserva', header: 'Data' }
-
+      { field: 'mesa.localizacao', header: 'Localização da Mesa' },
+      { field: 'dataReserva', header: 'Data' },
+      { field: 'mesa.capacidade', header: 'Capacidade da Mesa'},
+      { field: 'horaEntrada', header: 'Hora da Entrada' }
     ];
-
   }
 
   createForm() {
@@ -87,7 +87,8 @@ export class ManterReservaComponent implements OnInit {
   verDisponibilidadeMesa(){
     this.mesaService.verDisponibilidadeMesa(this.reserva).subscribe(mesas => this.mesas = mesas)
   }
+
   habilitarBotaoDisponbilidade(){
     return this.reserva.horaEntrada != null  && this.reserva.horaSaida != null && this.reserva.dataReserva != null && this.reserva.capacidade != null ? false : true
-}
+  }
 }
