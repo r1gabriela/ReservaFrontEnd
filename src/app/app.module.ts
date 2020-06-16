@@ -30,10 +30,10 @@ import { ManterClienteComponent } from './manter-cliente/manter-cliente.componen
 import { ManterFuncionarioComponent } from './manter-funcionario/manter-funcionario.component';
 import { ManterUsuarioComponent } from './manter-usuario/manter-usuario.component';
 import { ClienteComponent } from './cliente/cliente.component';
-import { AuthService } from './shared/service/auth.service';
 import { ReservaComponent } from './reserva/reserva.component';
 import { MessageService } from 'primeng/api';
 import { ManterReservaComponent } from './manter-reserva/manter-reserva.component';
+import { AutenticarServiceService } from './shared/service/autenticar-service.service';
 
 
 @NgModule({
@@ -74,7 +74,7 @@ import { ManterReservaComponent } from './manter-reserva/manter-reserva.componen
     ToastModule,
     InputMaskModule
   ],
-  providers: [AuthService, MessageService],
+  providers: [MessageService, MenuComponent, AutenticarServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

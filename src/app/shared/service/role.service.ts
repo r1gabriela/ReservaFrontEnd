@@ -12,8 +12,10 @@ export class RoleService {
 
   constructor(private httpClient: HttpClient) { }
 
-  roleUsuarioLogado(){
-    return this.httpClient.get<String>(this.ROLEUSUARIOLOGADO);
+  async roleUsuarioLogado() {
+    debugger
+    const role = await this.httpClient.get<Role>(this.ROLEUSUARIOLOGADO).toPromise();
+    window.localStorage.setItem('role', role.nome);
   }
 
   listarRole(){

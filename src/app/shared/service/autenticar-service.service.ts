@@ -17,10 +17,10 @@ export class AutenticarServiceService {
   constructor(private roleService: RoleService) { }
 
   getAuth(){
-    return this.auth;
+    return window.localStorage.getItem('logado');
   }
 
-  setAuth(condicao: boolean){
-    this.auth = condicao;
-  }
+  // setAuth(){
+  //   window.localStorage.setItem('logado', 'true');
+  // }
 }

@@ -7,6 +7,7 @@ import { throwError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Role } from '../shared/role';
+import { AutenticarServiceService } from '../shared/service/autenticar-service.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,7 +21,7 @@ export class CadastroComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
 
-  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private fb: FormBuilder, private messageService: MessageService, private router: Router, private autenticarService: AutenticarServiceService) { }
 
   ngOnInit() {
     this.usuarioForm = this.fb.group({
@@ -35,9 +36,11 @@ export class CadastroComponent implements OnInit {
     this.usuario.role.idRole = 2;
     this.usuarioService.cadastrar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
+      window.localStorage.setItem('logado', 'true');
       this.messageService.add({ key: 'msg', severity: 'success', summary: 'Cadastro', detail: "Operação efetuada com sucesso", life: 3000 });
       this.router.navigate[('cliente/cadastro')]
     }, (error) => {
+      window.localStorage.setItem('logado', 'false');
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: error.message, life: 3000 });
     });
   }

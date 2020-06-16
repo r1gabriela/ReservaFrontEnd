@@ -36,11 +36,12 @@ export class LoginComponent implements OnInit {
   logar() {
     this.usuarioService.logar(this.usuario).subscribe(usuario => {
       this.usuario = usuario;
-      this.autenticarService.setAuth(true);
+      window.localStorage.setItem('logado', 'true');
+      this.roleService.roleUsuarioLogado();
+      this.menuComponent.preencherMenu();
       this.router.navigate(['reserva/manter']);
-      // this.menuComponent.preencherMenu();
  }, (error) => {
-      this.autenticarService.setAuth(false);
+    window.localStorage.setItem('logado', 'false');
       this.messageService.add({ key: 'msg', severity: 'error', summary: 'Error', detail: "Falha ao logar, usuário ou senha incorretos", life: 3000 });
     });
 

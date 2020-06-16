@@ -1,6 +1,6 @@
 <div *ngIf="isMobileMenu()">
-  <button #btn type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
-  <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
+    <button #btn type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)"></button>
+    <p-tieredMenu #menu [model]="itemsCliente" [popup]="true"></p-tieredMenu>
 </div>
 <div class="p-col caixa" *ngIf="!isMobileMenu()">
   <div class="p-col-12 conteudo">
@@ -12,5 +12,5 @@
     </div>
   </div>
   <div class="barra"></div>
-  <p-panelMenu [transitionOptions]="'0ms'" [model]="items" [multiple]="false" class=ui-panelmenu></p-panelMenu>
+    <p-panelMenu [transitionOptions]="'0ms'" [model]="itemsCliente" [multiple]="false" class=ui-panelmenu></p-panelMenu>
 </div>
